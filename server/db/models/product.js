@@ -22,5 +22,28 @@ const Product = db.define('product', {
     }
 })
 
+Product.findByType = (type) => {
+    return Product.findAll({
+        where: {
+            type
+        }
+    })
+}
+
+Product.findByColor = (color) => {
+    return Product.findAll({
+        where: {
+            color
+        }
+    })
+}
+
+Product.findBySeason = (season) => {
+    return Product.findAll({
+        where: {
+            season
+        }
+    })
+}
 
 module.exports = Product;
