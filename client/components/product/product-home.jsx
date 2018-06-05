@@ -7,7 +7,7 @@ class ProductLanding extends Component {
         super(props);
         this.state = {}
     }
-
+//need api routes to Link
     render() {
         const products = this.props.products;
         return (
