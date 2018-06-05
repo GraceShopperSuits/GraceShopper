@@ -7,7 +7,7 @@ class ProductLanding extends Component {
         super(props);
         this.state = {}
     }
-//need api routes to Link
+    //need api routes to Link
     render() {
         const products = this.props.products;
         return (
@@ -30,10 +30,10 @@ class ProductLanding extends Component {
     }
 }
 
-const mapState = state=>{
-    return{
-        products:state.products
+const mapState = state => {
+    return {
+        products: state.products
     }
 }
 
-export default connect(mapState,null)(ProductLanding)
+export default connect(mapState, null)(ProductLanding)

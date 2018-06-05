@@ -10,6 +10,7 @@ const init = (products) => {
 }
 
 const reducer = (state = [], action) => {
+
     switch (action.type) {
         case INITIALIZE: {
             return action.product
