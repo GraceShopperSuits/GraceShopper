@@ -22,8 +22,8 @@ const reducer = (state = [], action) => {
 
 export default reducer;
 
-export const fetchProduct = ()=>{
-    return (dispatch)=>{
+export const fetchProduct = () => {
+    return (dispatch) => {
         axios.get('')
     }
 }
