@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const INITIALIZE = 'INITIALIZE_PRODUCTS'
 
-const init = (products) => {
+const init = products => {
     return {
         type: INITIALIZE,
         products
@@ -23,9 +23,13 @@ const reducer = (state = [], action) => {
 
 export default reducer;
 
-export const fetchProduct = () => {
+export const fetchProducts = () => {
     return (dispatch) => {
-        axios.get('')
+        axios.get('./api/products')
+            .then(res => dispatch(init(res.data)))
+            .catch(err => {
+                console.error('did not get data', err)
+            })
     }
 }
 

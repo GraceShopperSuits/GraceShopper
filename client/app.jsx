@@ -1,10 +1,10 @@
 import React from 'react'
-
 import { Navbar } from './components'
 import Routes from './routes'
-
 import { BrowserRouter as Router } from 'react-router-dom'
 import ProductLanding from './components/product/product-home'
+import { fetchProducts } from './store/product'
+import { connect } from 'react-redux'
 
 const App = () => {
   return (
@@ -18,4 +18,18 @@ const App = () => {
   )
 }
 
+// const mapDispatch = dispatch => {
+//     return {
+//         fetchProducts: () => {
+//             dispatch(fetchProducts)
+//         }
+//     }
+// }
+//we are going to fix this dispatch!
+
+
+export default connect()
+
 export default App
+
+
