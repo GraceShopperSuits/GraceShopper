@@ -1,7 +1,9 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Product, Price} = require('../server/db/models')
+const { User, Product, Price } = require('../server/db/models')
+const mockData = require('./MOCK_DATA.json')
+const mockUsers = require('./MOCK_USER_DATA.json')
 
 /**
  * Welcome to the seed file! This seed file uses a newer language feature called...
@@ -15,62 +17,41 @@ const {User, Product, Price} = require('../server/db/models')
  * Now that you've got the main idea, check it out in practice below!
  */
 
-async function seed () {
-  await db.sync({force: true})
+async function seed() {
+  await db.sync({ force: true })
   console.log('db synced!')
   // Whoa! Because we `await` the promise that db.sync returns, the next line will not be
   // executed until that promise resolves!
-  const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
-  ])
 
-  const prices = await Promise.all([
-    Price.create({
-      cost: 50
-    }),
-    Price.create({
-      cost: 100
-    }),
-    Price.create({
-      cost: 200
-    })
-  ])
+  //generate 20 random users
+  const users = []
+  for (let i = 0; i < mockUsers.length; i++) {
+    users.push(User.create(mockUsers[i]))
+  }
+  await Promise.all(users)
 
+  //generate 100 random prices
+  const prices = []
+  for (let i = 0; i < 100; i++) {
+    prices.push(
+      Price.create({
+        cost: Math.floor(Math.random() * 100),
+      })
+    )
+  }
+  await Promise.all(prices)
 
-  const products = await Promise.all([
-    Product.create({
-      name: "Nabil",
-      description: "This is a nice shirt",
-      imageUrl: "placeholder", 
-      color: "blue",
-      season: "fall",
-      type: "shirt"
-    }).then(product => {
-      product.setPrice(1)
-    }),
-    Product.create({
-      name: "Noah",
-      description: "This is a nice suit",
-      imageUrl: "placeholder", 
-      color: "red",
-      season: "winter",
-      type: "suit"
-    }).then(product => {
-      product.setPrice(2)
-    }),
-    Product.create({
-      name: "Jack",
-      description: "This is a nice shoe",
-      imageUrl: "placeholder", 
-      color: "black",
-      season: "spring",
-      type: "shoe"
-    }).then(product => {
-      product.setPrice(3)
-    })
+  //generate 100 random products
+  const products = []
+  for (let i = 0; i < mockData.length; i++) {
+    products.push(
+      Product.create(mockData[i]).then(product => {
+        product.setPrice(i + 1)
+      })
+    )
+  }
+  await Promise.all(products)
 
-  ])
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
   console.log(`seeded ${users.length} users`)
@@ -82,15 +63,16 @@ async function seed () {
 // any errors that might occur inside of `seed`.
 if (module === require.main) {
   seed()
-  .catch(err => {
-    console.error(err)
-    process.exitCode = 1
-  })
-  .finally(() => { // `finally` is like then + catch. It runs no matter what.
-    console.log('closing db connection')
-    db.close()
-    console.log('db connection closed')
-  })
+    .catch(err => {
+      console.error(err)
+      process.exitCode = 1
+    })
+    .finally(() => {
+      // `finally` is like then + catch. It runs no matter what.
+      console.log('closing db connection')
+      db.close()
+      console.log('db connection closed')
+    })
   /*
    * note: everything outside of the async function is totally synchronous
    * The console.log below will occur before any of the logs that occur inside
