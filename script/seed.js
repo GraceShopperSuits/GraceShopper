@@ -28,6 +28,12 @@ async function seed () {
   const prices = await Promise.all([
     Price.create({
       cost: 50
+    }),
+    Price.create({
+      cost: 100
+    }),
+    Price.create({
+      cost: 200
     })
   ])
 
@@ -42,7 +48,28 @@ async function seed () {
       type: "shirt"
     }).then(product => {
       product.setPrice(1)
+    }),
+    Product.create({
+      name: "Noah",
+      description: "This is a nice suit",
+      imageUrl: "placeholder", 
+      color: "red",
+      season: "winter",
+      type: "suit"
+    }).then(product => {
+      product.setPrice(2)
+    }),
+    Product.create({
+      name: "Jack",
+      description: "This is a nice shoe",
+      imageUrl: "placeholder", 
+      color: "black",
+      season: "spring",
+      type: "shoe"
+    }).then(product => {
+      product.setPrice(3)
     })
+
   ])
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
