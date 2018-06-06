@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Product, Price, Option } = require('../db/models')
+const { Product, Price, Option, User } = require('../db/models')
 module.exports = router
 
 //GET route for '/api/products' -- serves all products
