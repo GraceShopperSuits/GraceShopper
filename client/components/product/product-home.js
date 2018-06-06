@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 class ProductLanding extends Component {
@@ -32,12 +32,7 @@ class ProductLanding extends Component {
     })
 
     this.filteredProducts = [...shoes, ...shirts, ...suits]
-    console.log(this.filteredProducts)
-    // for(let key in this.state){
-    //     if(this.state[key]){
-    //         key = this.state[key]
-    //     }
-    // }
+
     // seperating products by type
     return (
       <div className="Landing">
@@ -70,29 +65,32 @@ class ProductLanding extends Component {
             shoes
           </label>
         </div>
+        <div>
+          <Link to="/addForm">Add Product</Link>
+        </div>
         {this.filteredProducts.length
           ? this.filteredProducts.map(product => {
-              return (
-                <div className="SingleProduct" key={product.id}>
-                  <div className="ProductText">
-                    <img src={product.imageUrl} />
-                    <h3>{product.name}</h3>
-                    <p>{product.color}</p>
-                  </div>
+            return (
+              <div className="SingleProduct" key={product.id}>
+                <div className="ProductText">
+                  <img src={product.imageUrl} />
+                  <h3>{product.name}</h3>
+                  <p>{product.color}</p>
                 </div>
-              )
-            })
+              </div>
+            )
+          })
           : products.map(product => {
-              return (
-                <div className="SingleProduct" key={product.id}>
-                  <div className="ProductText">
-                    <img src={product.imageUrl} />
-                    <h3>{product.name}</h3>
-                    <p>{product.color}</p>
-                  </div>
+            return (
+              <div className="SingleProduct" key={product.id}>
+                <div className="ProductText">
+                  <img src={product.imageUrl} />
+                  <h3>{product.name}</h3>
+                  <p>{product.color}</p>
                 </div>
-              )
-            })}
+              </div>
+            )
+          })}
       </div>
     )
   }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 class AddForm extends Component {
@@ -9,7 +8,8 @@ class AddForm extends Component {
             name: '',
             description: '',
             season: '',
-            type: ''
+            type: '',
+            cost: ''
         }
         this.handleChange = this.handleChange.bind(this)
     }
@@ -18,9 +18,9 @@ class AddForm extends Component {
         this.setState({ [event.target.name]: event.target.value })
     }
 
-    handleSubmit(eve) {
+    // handleSubmit(event) {
 
-    }
+    // }
 
     render() {
         return (
@@ -43,7 +43,23 @@ class AddForm extends Component {
                         <input type="text" value={this.state.season} name="season" onChange={this.handleChange} required />
                     </label>
                 </form>
+                <form>
+                    <label>
+                        Cost
+                        <input type="text" value={this.state.cost} name="cost" onChange={this.handleChange} required />
+                    </label>
+                </form>
             </div>
         )
     }
 }
+
+export const mapStateToProps = function (state) {
+
+}
+
+export const mapDispatchToProps = function (dispatch) {
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddForm)
