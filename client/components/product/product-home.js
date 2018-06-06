@@ -10,7 +10,8 @@ class ProductLanding extends Component {
     }
     //need api routes to Link
     render() {
-        const products = this.props.products;
+        const products = this.props.products || [];
+        console.log(products)
         // const fetchProducts = this.props.fetchProducts;
         return (
             <div className='Landing'>
