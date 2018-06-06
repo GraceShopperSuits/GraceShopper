@@ -10,17 +10,15 @@ class App extends Component {
   componentDidMount() {
     //when component mounts it will fetch all the data to the store
     const fetchInitialData = this.props.fetchInitialData
-    fetchInitialData();
+    fetchInitialData()
   }
   render() {
     return (
-      <Router >
-        <div>
-          <Navbar />
-          <ProductLanding />
-          <Routes />
-        </div>
-      </Router>
+      <div>
+        <Navbar />
+        <ProductLanding />
+        <Routes />
+      </div>
     )
   }
 }
@@ -29,15 +27,13 @@ const mapDispatch = dispatch => {
   return {
     fetchInitialData: () => {
       dispatch(fetchProducts())
-    }
+    },
   }
 }
 
 const mapState = null
 
-
-export default connect(mapState, mapDispatch)(App);
-
-
-
-
+export default connect(
+  mapState,
+  mapDispatch
+)(App)

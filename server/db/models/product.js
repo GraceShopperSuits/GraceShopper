@@ -5,15 +5,15 @@ const Option = require('./option')
 const Product = db.define('product', {
   name: {
     type: Sequelize.STRING,
+    allowNull: false,
   },
   description: {
     type: Sequelize.TEXT,
+    allowNull: false,
   },
   imageUrl: {
     type: Sequelize.STRING,
-  },
-  color: {
-    type: Sequelize.STRING,
+    allowNull: false,
   },
   season: {
     type: Sequelize.STRING,
@@ -32,6 +32,7 @@ Product.findByType = type => {
   })
 }
 
+<<<<<<< HEAD
 Product.findByColor = color => {
   return Product.findAll({
     include: [{
@@ -52,4 +53,6 @@ Product.findBySeason = season => {
   })
 }
 
+=======
+>>>>>>> 98cbcdd65a368a8b30b2f57c91993f31ff3d032e
 module.exports = Product
