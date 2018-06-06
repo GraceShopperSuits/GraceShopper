@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const { User, Product, Price } = require('../server/db/models')
+const { User, Product, Price, Option } = require('../server/db/models')
 const mockData = require('./MOCK_DATA.json')
 const mockUsers = require('./MOCK_USER_DATA.json')
 
@@ -30,25 +30,25 @@ async function seed() {
   }
   await Promise.all(users)
 
-  //generate 100 random prices
-  const prices = []
-  for (let i = 0; i < 100; i++) {
-    prices.push(
-      Price.create({
-        cost: Math.floor(Math.random() * 100),
-      })
-    )
-  }
-  await Promise.all(prices)
-
-  //generate 100 random products
+  //generate 100 random products and 100 random prices
   const products = []
   for (let i = 0; i < mockData.length; i++) {
-    products.push(
-      Product.create(mockData[i]).then(product => {
-        product.setPrice(i + 1)
+    const product = Product.create(mockData[i]).then(async currentProduct => {
+      const price = await Price.create({
+        cost: Math.floor(Math.random() * 100),
       })
-    )
+      currentProduct.setPrices(price).then(async productWithPrice => {
+        const option = await Option.create({
+          size: 'small',
+          color: 'blue',
+          fit: 'slim',
+          quantity: 10,
+        })
+        return productWithPrice.addOption(option)
+      })
+      return product
+    })
+    products.push(product)
   }
   await Promise.all(products)
 
