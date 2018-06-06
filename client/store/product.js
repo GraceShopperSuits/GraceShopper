@@ -1,18 +1,18 @@
 import axios from 'axios'
 
-const INITIALIZE = 'INITIALIZE_PRODUCTS'
+const GET_PRODUCTS = 'GET_PRODUCTS'
 
-const init = products => {
+const getProducts = products => {
   return {
-    type: INITIALIZE,
+    type: GET_PRODUCTS,
     products,
   }
 }
 
 const reducer = (state = [], action) => {
   switch (action.type) {
-    case INITIALIZE: {
-      return action.product
+    case GET_PRODUCTS: {
+      return action.products
     }
     default: {
       return state
@@ -26,7 +26,7 @@ export const fetchProducts = () => {
   return dispatch => {
     axios
       .get('/api/products')
-      .then(res => dispatch(init(res.data)))
+      .then(res => dispatch(getProducts(res.data)))
       .catch(err => console.error('could not get products', err))
   }
 }
