@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Navbar, AddForm } from './components'
+import { Navbar } from './components'
+import AddForm from './components/product/addForm'
 import Routes from './routes'
 import ProductLanding from './components/product/product-home'
 import { fetchProducts } from './store/product'
