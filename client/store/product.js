@@ -22,8 +22,11 @@ const reducer = (state = [], action) => {
 
 export default reducer
 
-export const fetchProduct = () => {
+export const fetchProducts = () => {
   return dispatch => {
-    axios.get('')
+    axios
+      .get('/api/products')
+      .then(res => dispatch(init(res.data)))
+      .catch(err => console.error('could not get products', err))
   }
 }

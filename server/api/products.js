@@ -4,6 +4,7 @@ module.exports = router
 
 //GET route for '/api/products' -- serves all products
 router.get('/', (req, res, next) => {
+  console.log(0)
   Product.findAll({ include: [{ all: true }] })
     .then(products => res.json(products))
     .catch(next)
