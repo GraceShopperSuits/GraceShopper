@@ -8,10 +8,12 @@ class Product extends Component {
         this.state = {}
     }
     render() {
+        console.log('hello!')
         const id = this.props.match.params.id
         return (
             <div className='ProductComponent'>
                 <img src='' />
+                <h1>Hello</h1>
             </div>
         )
     }
