@@ -32,8 +32,6 @@ router.get('/SKU/:productId', (req, res, next) => {
     .catch(next)
 })
 
-<<<<<<< HEAD
-
 router.get('/:color', (req, res, next) => {
   return Product.findByColor(req.params.color)
     .then(found => res.send(found))
@@ -64,4 +62,3 @@ router.post('/', (req, res, next) => {
       res.json(updatedProduct)
     })
 })
->>>>>>> 98cbcdd65a368a8b30b2f57c91993f31ff3d032e
