@@ -27,6 +27,7 @@ Product.findByType = type => {
     where: {
       type,
     },
+    include: [{ all: true }],
   })
 }
 
@@ -35,6 +36,7 @@ Product.findByColor = color => {
     where: {
       color,
     },
+    include: [{ all: true }],
   })
 }
 
@@ -43,6 +45,7 @@ Product.findBySeason = season => {
     where: {
       season,
     },
+    include: [{ all: true }],
   })
 }
 
