@@ -30,3 +30,10 @@ router.get('/SKU/:productId', (req, res, next) => {
     .then(product => res.json(product))
     .catch(next)
 })
+
+
+router.get('/:color', (req, res, next) => {
+  return Product.findByColor(req.params.color)
+    .then(found => res.send(found))
+    .catch(next)
+})

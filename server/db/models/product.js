@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
+const Option = require('./option')
 
 const Product = db.define('product', {
   name: {
@@ -33,12 +34,14 @@ Product.findByType = type => {
 
 Product.findByColor = color => {
   return Product.findAll({
-    where: {
-      color,
-    },
-    include: [{ all: true }],
+    include: [{
+      model: Option,
+      where: { color }
+    }]
   })
 }
+
+//find all items that are blue (like blue shirt? like blue shoe?)
 
 Product.findBySeason = season => {
   return Product.findAll({
