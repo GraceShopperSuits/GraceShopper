@@ -1,50 +1,44 @@
 import React, { Component } from 'react'
-import { NavLink } from "react-router-dom"
+import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { fetchProducts } from '../../store/product'
 
 class ProductLanding extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {}
-    }
-    //need api routes to Link
-    render() {
-        const products = this.props.products || [];
-        console.log(products)
-        // const fetchProducts = this.props.fetchProducts;
-        return (
-            <div className='Landing'>
-                {
-                    products.map(product => {
-                        return (
-                            <div className='SingleProduct' key={product.id}>
-                                <div className='ProductText'>
-                                    <img scr={product.imgUrl} />
-                                    <span>{product.name}</span>
-                                    <small>{product.color}</small>
-                                </div>
-                            </div>
-                        )
-                    })
-                }
+  constructor(props) {
+    super(props)
+    this.state = {}
+  }
+  componentDidMount() {
+    // store.getState()
+  }
+  //need api routes to Link
+  render() {
+    const products = this.props.products || []
+    console.log(this.props)
+    return (
+      <div className="Landing">
+        {products.map(product => {
+          return (
+            <div className="SingleProduct" key={product.id}>
+              <div className="ProductText">
+                <img src={product.imageUrl} />
+                <h3>{product.name}</h3>
+                <p>{product.color}</p>
+              </div>
             </div>
-        )
-    }
+          )
+        })}
+      </div>
+    )
+  }
 }
 
 const mapState = state => {
-    return {
-        products: state.products
-    }
+  return {
+    products: state.product,
+  }
 }
 
-// const mapDispatch = dispatch => {
-//     return {
-//         fetchProducts: () => {
-//             dispatch(fetchProducts)
-//         }
-//     }
-// }
-
-export default connect(mapState, null)(ProductLanding)
+export default connect(
+  mapState,
+  null
+)(ProductLanding)
