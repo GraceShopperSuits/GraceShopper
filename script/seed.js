@@ -32,6 +32,10 @@ async function seed() {
 
   //generate 100 random products and 100 random prices
   const products = []
+  const sizeArr = ['small', 'medium', 'large']
+  const colorArr = ['blue', 'red', 'orange', 'green', 'yellow', 'black']
+  const fitArr = ['slim', 'relaxed', 'casual']
+
   for (let i = 0; i < mockData.length; i++) {
     const product = Product.create(mockData[i]).then(async currentProduct => {
       const price = await Price.create({
@@ -39,10 +43,10 @@ async function seed() {
       })
       currentProduct.setPrices(price).then(async productWithPrice => {
         const option = await Option.create({
-          size: 'small',
-          color: 'blue',
-          fit: 'slim',
-          quantity: 10,
+          size: sizeArr[Math.floor(Math.random() * sizeArr.length)],
+          color: colorArr[Math.floor(Math.random() * colorArr.length)],
+          fit: fitArr[Math.floor(Math.random() * fitArr.length)],
+          quantity: Math.floor(Math.random() * 30),
         })
         return productWithPrice.addOption(option)
       })

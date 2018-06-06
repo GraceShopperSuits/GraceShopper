@@ -1,11 +1,12 @@
 const router = require('express').Router()
-const { Product } = require('../db/models')
+const { Product, Price } = require('../db/models')
 module.exports = router
 
 //GET route for '/api/products' -- serves all products
 router.get('/', (req, res, next) => {
-  console.log(0)
-  Product.findAll({ include: [{ all: true }] })
+  Product.findAll({
+    include: [{ all: true }],
+  })
     .then(products => res.json(products))
     .catch(next)
 })
