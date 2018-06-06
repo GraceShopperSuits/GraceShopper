@@ -28,7 +28,7 @@ const App = () => {
 //we are going to fix this dispatch!
 
 
-export default connect()
+export connect();
 
 export default App
 
