@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { NavLink } from "react-router-dom"
 import { connect } from 'react-redux'
+import { fetchProducts } from '../../store/product'
 
 class ProductLanding extends Component {
     constructor(props) {
@@ -9,7 +10,9 @@ class ProductLanding extends Component {
     }
     //need api routes to Link
     render() {
-        const products = this.props.products;
+        const products = this.props.products || [];
+        console.log(products)
+        // const fetchProducts = this.props.fetchProducts;
         return (
             <div className='Landing'>
                 {
@@ -35,5 +38,13 @@ const mapState = state => {
         products: state.products
     }
 }
+
+// const mapDispatch = dispatch => {
+//     return {
+//         fetchProducts: () => {
+//             dispatch(fetchProducts)
+//         }
+//     }
+// }
 
 export default connect(mapState, null)(ProductLanding)
