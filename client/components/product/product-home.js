@@ -29,8 +29,7 @@ class ProductLanding extends Component {
     const suits = products.filter(product => {
       return product.type === 'suit'
     })
-    console.log('prod', products)
-    console.log('state', this.state)
+
     // seperating products by type
     return (
       <div className="Landing">
