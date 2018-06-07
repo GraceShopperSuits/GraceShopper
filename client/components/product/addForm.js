@@ -1,56 +1,4 @@
 import React, { Component } from 'react'
-<<<<<<< HEAD
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-
-class AddForm extends Component {
-    constructor() {
-        super()
-        this.state = {
-            name: '',
-            description: '',
-            season: '',
-            type: ''
-        }
-        this.handleChange = this.handleChange.bind(this)
-    }
-
-    handleChange(event) {
-        this.setState({ [event.target.name]: event.target.value })
-    }
-
-    handleSubmit(event) {
-
-    }
-    /*
-    Creating addForm for admin to add products. Type was excluded from form because we want to provide a drop down in case of human error.
-    */
-    render() {
-        return (
-            <div>
-                <form>
-                    <label>
-                        Name
-                        <input type="text" value={this.state.name} name="name" onChange={this.handleChange} required />
-                    </label>
-                </form>
-                <form>
-                    <label>
-                        Description
-                        <input type="text" value={this.state.description} name="description" onChange={this.handleChange} required />
-                    </label>
-                </form>
-                <form>
-                    <label>
-                        Season
-                        <input type="text" value={this.state.season} name="season" onChange={this.handleChange} required />
-                    </label>
-                </form>
-            </div>
-        )
-    }
-}
-=======
 import { connect } from 'react-redux'
 import { createProduct } from '../../store/product'
 
@@ -61,12 +9,10 @@ class AddForm extends Component {
       name: '',
       description: '',
       season: '',
-      type: '',
-      cost: '',
+      price: '',
       color: '',
       imageUrl: '',
       size: '',
-      fit: '',
       quantity: '',
     }
     this.handleChange = this.handleChange.bind(this)
@@ -112,25 +58,14 @@ class AddForm extends Component {
             />
           </label>
           <label>
-            Cost
+            Price
             <input
               type="number"
-              value={this.state.cost}
-              name="cost"
+              value={this.state.price}
+              name="price"
               onChange={this.handleChange}
               min="1"
               max="1000"
-              required
-            />
-          </label>
-
-          <label>
-            Color
-            <input
-              type="text"
-              value={this.state.color}
-              name="color"
-              onChange={this.handleChange}
               required
             />
           </label>
@@ -141,17 +76,6 @@ class AddForm extends Component {
               type="text"
               value={this.state.imageUrl}
               name="imageUrl"
-              onChange={this.handleChange}
-              required
-            />
-          </label>
-
-          <label>
-            Size
-            <input
-              type="text"
-              value={this.state.size}
-              name="size"
               onChange={this.handleChange}
               required
             />
@@ -180,20 +104,25 @@ class AddForm extends Component {
             </select>
           </label>
           <label>
-            Clothing Category
-            <select name="type" value={this.state.type} onChange={this.handleToggle}>
-              <option>shirt</option>
-              <option>suit</option>
-              <option>shoe</option>
+            Color
+            <select name="color" value={this.state.color} onChange={this.handleToggle}>
+              <option>Black</option>
+              <option>Navy</option>
+              <option>Brown</option>
+              <option>Maroon</option>
+              <option>Pink</option>
+              <option>White</option>
             </select>
           </label>
           <label>
-            Fit
-            <select name="fit" value={this.state.fit} onChange={this.handleToggle}>
-              <option>N/A</option>
-              <option>slim</option>
-              <option>relaxed</option>
-              <option>casual</option>
+            Size
+            <select name="size" value={this.state.size} onChange={this.handleToggle}>
+              <option>36</option>
+              <option>38</option>
+              <option>40</option>
+              <option>42</option>
+              <option>44</option>
+              <option>46</option>
             </select>
           </label>
           <button type="submit">Submit Product</button>
@@ -220,12 +149,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         name: '',
         description: '',
         season: '',
-        type: '',
         cost: '',
         color: '',
         imageUrl: '',
         size: '',
-        fit: '',
         quantity: '',
       })
     },
@@ -236,4 +163,3 @@ export default connect(
   null,
   mapDispatchToProps
 )(AddForm)
->>>>>>> fb0370b95f56f0bef232dec6e5af61bbb675a2d2

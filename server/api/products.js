@@ -38,27 +38,42 @@ router.get('/:color', (req, res, next) => {
     .catch(next)
 })
 //POST route for '/api/products' -- Allows admin to add a product
-router.post('/', (req, res, next) => {
-  Product.create({
+
+router.post('/', async (req, res, next) => {
+  let product = await Product.create({
     name: req.body.name,
+    color: req.body.color,
     description: req.body.description,
-    imageUrl: req.body.imageUrl,
     season: req.body.season,
-    type: req.body.type,
+    price: +req.body.price,
+    imageUrl: req.body.imageUrl,
+    size: req.body.size,
   })
-    .then(async product => {
-      const price = await Price.create({ cost: Number(req.body.cost) })
-      const option = await Option.create({
-        size: req.body.size,
-        color: req.body.color,
-        fit: req.body.fit,
-        quantity: req.body.quantity,
-      })
-      await product.addPrice(price)
-      await product.addOption(option)
-      return product
-    })
-    .then(updatedProduct => {
-      res.json(updatedProduct)
-    })
+  if (!product) res.sendStatus(400)
+  res.json(product)
 })
+
+// router.post('/', (req, res, next) => {
+//   Product.create({
+//     name: req.body.name,
+//     description: req.body.description,
+//     imageUrl: req.body.imageUrl,
+//     season: req.body.season,
+//     type: req.body.type,
+//   })
+//     .then(async product => {
+//       const price = await Price.create({ cost: Number(req.body.cost) })
+//       const option = await Option.create({
+//         size: req.body.size,
+//         color: req.body.color,
+//         fit: req.body.fit,
+//         quantity: req.body.quantity,
+//       })
+//       await product.addPrice(price)
+//       await product.addOption(option)
+//       return product
+//     })
+//     .then(updatedProduct => {
+//       res.json(updatedProduct)
+//     })
+// })
