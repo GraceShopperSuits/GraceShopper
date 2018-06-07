@@ -145,14 +145,16 @@ class ProductLanding extends Component {
             })
           : products.map(product => {
               return (
-                <div className="SingleProduct" key={product.id}>
-                  <div className="ProductText">
-                    <img src={product.imageUrl} />
-                    <h3>{product.name}</h3>
-                    <p>{product.color}</p>
-                    <p>{product.season}</p>
+                <Link to={`/products/${product.id}`} key={product.id}>
+                  <div className="SingleProduct">
+                    <div className="ProductText">
+                      <img src={product.imageUrl} />
+                      <h3>{product.name}</h3>
+                      <p>{product.color}</p>
+                      <p>{product.season}</p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               )
             })}
       </div>
