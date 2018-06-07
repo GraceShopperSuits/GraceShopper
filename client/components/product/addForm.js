@@ -36,7 +36,6 @@ class AddForm extends Component {
   // }
 
   render() {
-    console.log(this.props, '&&&&state')
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -63,10 +62,12 @@ class AddForm extends Component {
           <label>
             Cost
             <input
-              type="text"
+              type="number"
               value={this.state.cost}
               name="cost"
               onChange={this.handleChange}
+              min="1"
+              max="1000"
               required
             />
           </label>
@@ -107,7 +108,9 @@ class AddForm extends Component {
           <label>
             quantity
             <input
-              type="text"
+              min="1"
+              max="1000"
+              type="number"
               value={this.state.quantity}
               name="quantity"
               onChange={this.handleChange}
