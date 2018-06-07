@@ -63,7 +63,7 @@ class Product extends Component {
             <h3>{singleProduct.description}</h3>
             <h3>{singleProduct.season} collection</h3>
             <h3>Price: {prices[prices.length - 1].cost}</h3>
-            <Link to={`/product/${singleProduct.id}/edit`}>Edit</Link>
+            <Link to={`/products/${singleProduct.id}/edit`}>Edit</Link>
             <label htmlFor="color">Select a color: </label>
             <select name="color" onChange={this.handleChange}>
               <option value="">Pick a color</option>
