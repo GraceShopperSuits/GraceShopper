@@ -9,3 +9,14 @@ router.use((req, res, next) => {
   error.status = 404
   next(error)
 })
+
+
+//orders model: products, status, fk: userId
+
+//what is the difference between an order and a cart?
+//a cart can change. an order is literally a placed cart. 
+//an order needs FIXED information. 
+
+// we need an order. 
+// order belongToMany products and products BelongToMany Order --> we need a through table. 
+// we have products. 

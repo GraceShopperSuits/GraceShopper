@@ -7,7 +7,7 @@ const Option = db.define('option', {
   },
   color: {
     type: Sequelize.STRING,
-  },
+  }, //CG: product specific.
   fit: {
     type: Sequelize.STRING,
   },
@@ -15,5 +15,5 @@ const Option = db.define('option', {
     type: Sequelize.INTEGER,
   },
 })
-
+//CG: THIS IS VERY GOOD!! but not right now. Sequelize.ARRAY or Sequelize.JSONB. 
 module.exports = Option

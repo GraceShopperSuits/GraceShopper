@@ -16,17 +16,17 @@ const User = db.define('user', {
       return () => this.getDataValue('password')
     }
   },
-  admin:{
-    type: Sequelize.BOOLEAN
+  admin: {
+    type: Sequelize.BOOLEAN //CG: probably want a defaultValue here....
   },
   name: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING //i would probably put this higher on the list.
   },
   salt: {
     type: Sequelize.STRING,
     // Making `.salt` act like a function hides it when serializing to JSON.
     // This is a hack to get around Sequelize's lack of a "private" option.
-    get () {
+    get() {
       return () => this.getDataValue('salt')
     }
   },
