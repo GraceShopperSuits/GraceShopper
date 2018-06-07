@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Navbar } from './components'
 import AddForm from './components/product/addForm'
 import Routes from './routes'
-import ProductLanding from './components/product/product-home'
 import { fetchProducts } from './store/product'
 import { connect } from 'react-redux'
 

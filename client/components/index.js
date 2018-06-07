@@ -6,5 +6,5 @@
 export { default as Navbar } from './navbar'
 export { default as UserHome } from './user-home'
 export { Login, Signup } from './auth-form'
-export { AddForm } from './product/AddForm'
+export { AddForm } from './product/addForm'
 export { ProductLanding } from './product/product-home'
