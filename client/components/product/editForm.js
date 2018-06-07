@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { editProduct } from '../../store/product'
+import { updateProduct } from '../../store/product'
 
 class EditForm extends Component {
   constructor(props) {
@@ -19,6 +19,9 @@ class EditForm extends Component {
     this.handleToggle = this.handleToggle.bind(this)
     this.handleSubmit = this.props.handleSubmit.bind(this)
   }
+  componentDidMount() {
+    // this.setState({this.product})
+  }
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value })
     console.log(`we're typing ${event.target.name} ${event.target.value}`)
@@ -29,17 +32,21 @@ class EditForm extends Component {
     console.log(event.target.value, event.target.name)
   }
 
-  // handleSubmit(event) {
-
-  // }
-
   render() {
+    const id = this.props.match.params.productId
+    const product =
+      this.props.products.filter(check => {
+        return check.id === +id
+      })[0] || {}
+
     return (
       <div>
+        <h1>Editing {product.name}</h1>
         <form onSubmit={this.handleSubmit}>
           <label>
             Name
             <input
+              placeholder={product.name}
               type="text"
               value={this.state.name}
               name="name"
@@ -132,9 +139,11 @@ class EditForm extends Component {
   }
 }
 
-// export const mapStateToProps = function(state) {
-//   return {}
-// }
+export const mapStateToProps = function (state) {
+  return {
+    products: state.product
+  }
+}
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
@@ -144,7 +153,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         ...this.state,
       }
       console.log(product)
-      dispatch(editProduct(product))
+      dispatch(updateProduct(product, id))
+
       this.setState({
         name: '',
         description: '',
@@ -160,6 +170,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(EditForm)

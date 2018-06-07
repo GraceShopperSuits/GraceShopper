@@ -50,6 +50,14 @@ router.post('/', async (req, res, next) => {
   res.json(product)
 })
 
+router.put('/:id', async (req, res, next) => {
+  const id = +req.params.id;
+  let product = await Product.findById(id)
+  if (!product) res.sendStatus(404)
+  await product.update(req.body)
+  res.status(201).json(product)
+})
+
 // router.post('/', (req, res, next) => {
 //   Product.create({
 //     name: req.body.name,
