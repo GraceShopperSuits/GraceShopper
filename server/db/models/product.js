@@ -1,11 +1,13 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
-const Option = require('./option')
 
 const Product = db.define('product', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   description: {
     type: Sequelize.TEXT,
@@ -13,22 +15,40 @@ const Product = db.define('product', {
   },
   imageUrl: {
     type: Sequelize.STRING,
-    allowNull: false,
+    defaultValue: "http://dummyimage.com/250x250.jpg/5fa2dd/ffffff"
   },
   season: {
-    type: Sequelize.STRING,
+    type: Sequelize.ENUM('Summer', 'Spring', 'Autumn', 'Winter'),
   },
-  type: {
-    type: Sequelize.ENUM('shirt', 'suit', 'shoe'),
+  size: {
+    type: Sequelize.ENUM(36, 38, 40, 42, 44, 46),
+    allowNull: false
   },
+  color: {
+    type: Sequelize.ENUM('Black', 'Navy', 'Brown', 'Maroon', 'Pink', 'White')
+  },
+  quantity: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+    allowNull: false
+  },
+  price: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  }
 })
 
 Product.findByType = type => {
   return Product.findAll({
     where: {
-      type,
-    },
-    include: [{ all: true }],
+      type
+    }
+  })
+}
+
+Product.findByQuery = query => {
+  return Product.findAll({
+    where: query
   })
 }
 
