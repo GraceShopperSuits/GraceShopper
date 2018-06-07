@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 class ProductLanding extends Component {
@@ -32,12 +32,7 @@ class ProductLanding extends Component {
     })
 
     this.filteredProducts = [...shoes, ...shirts, ...suits]
-    console.log(this.filteredProducts)
-    // for(let key in this.state){
-    //     if(this.state[key]){
-    //         key = this.state[key]
-    //     }
-    // }
+
     // seperating products by type
     return (
       <div className="Landing">
@@ -69,6 +64,9 @@ class ProductLanding extends Component {
             />
             shoes
           </label>
+        </div>
+        <div>
+          <Link to="/products/add">Add Product</Link>
         </div>
         {this.filteredProducts.length
           ? this.filteredProducts.map(product => {

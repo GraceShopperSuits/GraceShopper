@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
+const Option = require('./option')
 
 const Product = db.define('product', {
   name: {

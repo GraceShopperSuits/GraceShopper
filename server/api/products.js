@@ -32,6 +32,12 @@ router.get('/SKU/:productId', (req, res, next) => {
     .catch(next)
 })
 
+
+router.get('/:color', (req, res, next) => {
+  return Product.findByColor(req.params.color)
+    .then(found => res.send(found))
+    .catch(next)
+})
 //POST route for '/api/products' -- Allows admin to add a product
 router.post('/', (req, res, next) => {
   Product.create({
