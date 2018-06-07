@@ -66,31 +66,31 @@ class ProductLanding extends Component {
           </label>
         </div>
         <div>
-          <Link to="/addForm">Add Product</Link>
+          <Link to="/products/add">Add Product</Link>
         </div>
         {this.filteredProducts.length
           ? this.filteredProducts.map(product => {
-            return (
-              <div className="SingleProduct" key={product.id}>
-                <div className="ProductText">
-                  <img src={product.imageUrl} />
-                  <h3>{product.name}</h3>
-                  <p>{product.color}</p>
+              return (
+                <div className="SingleProduct" key={product.id}>
+                  <div className="ProductText">
+                    <img src={product.imageUrl} />
+                    <h3>{product.name}</h3>
+                    <p>{product.color}</p>
+                  </div>
                 </div>
-              </div>
-            )
-          })
+              )
+            })
           : products.map(product => {
-            return (
-              <div className="SingleProduct" key={product.id}>
-                <div className="ProductText">
-                  <img src={product.imageUrl} />
-                  <h3>{product.name}</h3>
-                  <p>{product.color}</p>
+              return (
+                <div className="SingleProduct" key={product.id}>
+                  <div className="ProductText">
+                    <img src={product.imageUrl} />
+                    <h3>{product.name}</h3>
+                    <p>{product.color}</p>
+                  </div>
                 </div>
-              </div>
-            )
-          })}
+              )
+            })}
       </div>
     )
   }
