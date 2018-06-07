@@ -32,10 +32,6 @@ router.get('/SKU/:productId', (req, res, next) => {
     .catch(next)
 })
 
-<<<<<<< HEAD
-=======
-
->>>>>>> fb0370b95f56f0bef232dec6e5af61bbb675a2d2
 router.get('/:color', (req, res, next) => {
   return Product.findByColor(req.params.color)
     .then(found => res.send(found))
