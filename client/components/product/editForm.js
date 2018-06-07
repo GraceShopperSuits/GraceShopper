@@ -1,20 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { createProduct } from '../../store/product'
+import { editProduct } from '../../store/product'
 
-class AddForm extends Component {
+class EditForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
       name: '',
       description: '',
       season: '',
-      type: '',
-      cost: '',
+      price: '',
       color: '',
       imageUrl: '',
       size: '',
-      fit: '',
       quantity: '',
     }
     this.handleChange = this.handleChange.bind(this)
@@ -36,15 +34,8 @@ class AddForm extends Component {
   // }
 
   render() {
-    const id = this.props.match.params.id
-    const product =
-      this.props.products.filter(check => {
-        return check.id === +id
-      })[0] || {}
-    console.log(product)
     return (
       <div>
-        <h1>Editing {product.name}</h1>
         <form onSubmit={this.handleSubmit}>
           <label>
             Name
@@ -67,25 +58,14 @@ class AddForm extends Component {
             />
           </label>
           <label>
-            Cost
+            Price
             <input
               type="number"
-              value={this.state.cost}
-              name="cost"
+              value={this.state.price}
+              name="price"
               onChange={this.handleChange}
               min="1"
               max="1000"
-              required
-            />
-          </label>
-
-          <label>
-            Color
-            <input
-              type="text"
-              value={this.state.color}
-              name="color"
-              onChange={this.handleChange}
               required
             />
           </label>
@@ -96,17 +76,6 @@ class AddForm extends Component {
               type="text"
               value={this.state.imageUrl}
               name="imageUrl"
-              onChange={this.handleChange}
-              required
-            />
-          </label>
-
-          <label>
-            Size
-            <input
-              type="text"
-              value={this.state.size}
-              name="size"
               onChange={this.handleChange}
               required
             />
@@ -135,20 +104,25 @@ class AddForm extends Component {
             </select>
           </label>
           <label>
-            Clothing Category
-            <select name="type" value={this.state.type} onChange={this.handleToggle}>
-              <option>shirt</option>
-              <option>suit</option>
-              <option>shoe</option>
+            Color
+            <select name="color" value={this.state.color} onChange={this.handleToggle}>
+              <option>Black</option>
+              <option>Navy</option>
+              <option>Brown</option>
+              <option>Maroon</option>
+              <option>Pink</option>
+              <option>White</option>
             </select>
           </label>
           <label>
-            Fit
-            <select name="fit" value={this.state.fit} onChange={this.handleToggle}>
-              <option>N/A</option>
-              <option>slim</option>
-              <option>relaxed</option>
-              <option>casual</option>
+            Size
+            <select name="size" value={this.state.size} onChange={this.handleToggle}>
+              <option>36</option>
+              <option>38</option>
+              <option>40</option>
+              <option>42</option>
+              <option>44</option>
+              <option>46</option>
             </select>
           </label>
           <button type="submit">Submit Product</button>
@@ -158,9 +132,9 @@ class AddForm extends Component {
   }
 }
 
-export const mapStateToProps = function(state) {
-  return { products: state.product }
-}
+// export const mapStateToProps = function(state) {
+//   return {}
+// }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
@@ -170,17 +144,15 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         ...this.state,
       }
       console.log(product)
-      dispatch(createProduct(product))
+      dispatch(editProduct(product))
       this.setState({
         name: '',
         description: '',
         season: '',
-        type: '',
         cost: '',
         color: '',
         imageUrl: '',
         size: '',
-        fit: '',
         quantity: '',
       })
     },
@@ -188,6 +160,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
-)(AddForm)
+)(EditForm)
