@@ -48,7 +48,22 @@ async function seed() {
           fit: fitArr[Math.floor(Math.random() * fitArr.length)],
           quantity: Math.floor(Math.random() * 30),
         })
-        return productWithPrice.addOption(option)
+        const option2 = await Option.create({
+          size: sizeArr[Math.floor(Math.random() * sizeArr.length)],
+          color: colorArr[Math.floor(Math.random() * colorArr.length)],
+          fit: fitArr[Math.floor(Math.random() * fitArr.length)],
+          quantity: Math.floor(Math.random() * 30),
+        })
+        const option3 = await Option.create({
+          size: sizeArr[Math.floor(Math.random() * sizeArr.length)],
+          color: colorArr[Math.floor(Math.random() * colorArr.length)],
+          fit: fitArr[Math.floor(Math.random() * fitArr.length)],
+          quantity: Math.floor(Math.random() * 30),
+        })
+        await productWithPrice.addOption(option)
+        await productWithPrice.addOption(option2)
+        await productWithPrice.addOption(option3)
+        return productWithPrice
       })
       return product
     })
