@@ -21,7 +21,7 @@ const Product = db.define('product', {
     type: Sequelize.ENUM('Summer', 'Spring', 'Autumn', 'Winter'),
   },
   size: {
-    type: Sequelize.ENUM(36, 38, 40, 42, 44, 46),
+    type: Sequelize.ENUM('36', '38', '40', '42', '44', '46'),
     allowNull: false
   },
   color: {
