@@ -6,9 +6,6 @@ class ProductLanding extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      // shoes: false,
-      // shirts: false,
-      // suits: false,
       spring: false,
       summer: false,
       fall: false,
@@ -22,7 +19,6 @@ class ProductLanding extends Component {
   //need api routes to Link
   render() {
     const products = this.props.products || []
-    console.log(products[0])
 
     const summer = products.filter(product => {
       return product.season === 'summer' && this.state.summer
@@ -47,37 +43,33 @@ class ProductLanding extends Component {
             <input
               type="checkbox"
               name="spring"
-              //   checked={isChecked}
               onChange={this.toggleCheckboxChange}
             />
-            spring
+            Spring
           </label>
           <label>
             <input
               type="checkbox"
               name="summer"
-              //   checked={isChecked}
               onChange={this.toggleCheckboxChange}
             />
-            summer
+            Summer
           </label>
           <label>
             <input
               type="checkbox"
               name="fall"
-              //   checked={isChecked}
               onChange={this.toggleCheckboxChange}
             />
-            fall
+            Autumn
           </label>
           <label>
             <input
               type="checkbox"
               name="winter"
-              //   checked={isChecked}
               onChange={this.toggleCheckboxChange}
             />
-            winter
+            Winter
           </label>
         </div>
         <div>
@@ -85,27 +77,27 @@ class ProductLanding extends Component {
         </div>
         {this.filteredProducts.length
           ? this.filteredProducts.map(product => {
-              return (
-                <div className="SingleProduct" key={product.id}>
-                  <div className="ProductText">
-                    <img src={product.imageUrl} />
-                    <h3>{product.name}</h3>
-                    <p>{product.color}</p>
-                  </div>
+            return (
+              <div className="SingleProduct" key={product.id}>
+                <div className="ProductText">
+                  <img src={product.imageUrl} />
+                  <h3>{product.name}</h3>
+                  <p>{product.color}</p>
                 </div>
-              )
-            })
+              </div>
+            )
+          })
           : products.map(product => {
-              return (
-                <div className="SingleProduct" key={product.id}>
-                  <div className="ProductText">
-                    <img src={product.imageUrl} />
-                    <h3>{product.name}</h3>
-                    <p>{product.color}</p>
-                  </div>
+            return (
+              <div className="SingleProduct" key={product.id}>
+                <div className="ProductText">
+                  <img src={product.imageUrl} />
+                  <h3>{product.name}</h3>
+                  <p>{product.color}</p>
                 </div>
-              )
-            })}
+              </div>
+            )
+          })}
       </div>
     )
   }

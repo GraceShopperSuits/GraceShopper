@@ -4,39 +4,36 @@ module.exports = router
 
 //GET route for '/api/products' -- serves all products
 router.get('/', (req, res, next) => {
-  Product.findAll({
-    include: [{ all: true }],
-  })
+  let whereObj = {}
+  if (req.query && req.query.color) {
+    whereObj.color = req.query.color
+  }
+  if (req.query && req.query.season) {
+    whereObj.season = req.query.season
+  }
+  if (req.query && req.query.size) {
+    whereObj.size = req.query.size
+  }
+  Product.findAll(
+    {
+      where: whereObj
+    }
+  )
     .then(products => res.json(products))
     .catch(next)
 })
 
-//GET route for '/api/products/:productType' -- serves all products in that type/category
-router.get('/:productType', (req, res, next) => {
-  Product.findByType(req.params.productType)
-    .then(products => {
-      res.json(products)
-    })
-    .catch(next)
-})
-
-//GET route for '/api/products/SKU/:productId' -- serves one product by ID
-router.get('/SKU/:productId', (req, res, next) => {
+//GET route for '/api/products/:productId' -- serves one product by ID
+router.get('/:productId', (req, res, next) => {
   Product.findOne({
     where: {
       id: req.params.productId,
-    },
-    include: [{ all: true }],
+    }
   })
     .then(product => res.json(product))
     .catch(next)
 })
 
-router.get('/:color', (req, res, next) => {
-  return Product.findByColor(req.params.color)
-    .then(found => res.send(found))
-    .catch(next)
-})
 //POST route for '/api/products' -- Allows admin to add a product
 
 router.post('/', async (req, res, next) => {
