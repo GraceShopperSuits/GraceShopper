@@ -70,7 +70,6 @@ class ProductLanding extends Component {
       ...brown,
     ]
     // season=Winter&season=Summer&color=Black
-    console.log('test', this.state)
     // seperating products by type
     return (
       <div className="Landing">
