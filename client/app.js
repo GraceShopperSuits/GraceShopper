@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Navbar } from './components'
 import Routes from './routes'
-import { BrowserRouter as Router } from 'react-router-dom'
-import ProductLanding from './components/product/product-home'
 import { fetchProducts } from './store/product'
 import { connect } from 'react-redux'
 
@@ -16,7 +14,6 @@ class App extends Component {
     return (
       <div>
         <Navbar />
-        {/* <ProductLanding /> */}
         <Routes />
       </div>
     )
