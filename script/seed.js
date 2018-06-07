@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const { User, Product, Price, Option } = require('../server/db/models')
+const { User, Product } = require('../server/db/models')
 const mockData = require('./MOCK_DATA.json')
 const mockUsers = require('./MOCK_USER_DATA.json')
 
@@ -32,41 +32,12 @@ async function seed() {
 
   //generate 100 random products and 100 random prices
   const products = []
-  const sizeArr = ['small', 'medium', 'large']
-  const colorArr = ['blue', 'red', 'orange', 'green', 'yellow', 'black']
-  const fitArr = ['slim', 'relaxed', 'casual']
+  const sizeArr = ['36', '38', '40', '42', '44', '46']
+  const colorArr = ['Black', 'Navy', 'Brown', 'Maroon', 'Pink', 'White']
 
   for (let i = 0; i < mockData.length; i++) {
-    const product = Product.create(mockData[i]).then(async currentProduct => {
-      const price = await Price.create({
-        cost: Math.floor(Math.random() * 100),
-      })
-      currentProduct.setPrices(price).then(async productWithPrice => {
-        const option = await Option.create({
-          size: sizeArr[Math.floor(Math.random() * sizeArr.length)],
-          color: colorArr[Math.floor(Math.random() * colorArr.length)],
-          fit: fitArr[Math.floor(Math.random() * fitArr.length)],
-          quantity: Math.floor(Math.random() * 30),
-        })
-        const option2 = await Option.create({
-          size: sizeArr[Math.floor(Math.random() * sizeArr.length)],
-          color: colorArr[Math.floor(Math.random() * colorArr.length)],
-          fit: fitArr[Math.floor(Math.random() * fitArr.length)],
-          quantity: Math.floor(Math.random() * 30),
-        })
-        const option3 = await Option.create({
-          size: sizeArr[Math.floor(Math.random() * sizeArr.length)],
-          color: colorArr[Math.floor(Math.random() * colorArr.length)],
-          fit: fitArr[Math.floor(Math.random() * fitArr.length)],
-          quantity: Math.floor(Math.random() * 30),
-        })
-        await productWithPrice.addOption(option)
-        await productWithPrice.addOption(option2)
-        await productWithPrice.addOption(option3)
-        return productWithPrice
-      })
-      return product
-    })
+    mockData[i].size = sizeArr[Math.floor(Math.random() * sizeArr.length)]
+    let product = Product.create(mockData[i])
     products.push(product)
   }
   await Promise.all(products)
