@@ -6,9 +6,13 @@ class ProductLanding extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      shoes: false,
-      shirts: false,
-      suits: false,
+      // shoes: false,
+      // shirts: false,
+      // suits: false,
+      spring: false,
+      summer: false,
+      fall: false,
+      winter: false,
     }
     this.toggleCheckboxChange = this.toggleCheckboxChange.bind(this)
   }
@@ -18,20 +22,22 @@ class ProductLanding extends Component {
   //need api routes to Link
   render() {
     const products = this.props.products || []
+    console.log(products[0])
 
-    const shoes = products.filter(product => {
-      return product.type === 'shoe' && this.state.shoes
+    const summer = products.filter(product => {
+      return product.season === 'summer' && this.state.summer
+    })
+    const spring = products.filter(product => {
+      return product.season === 'spring' && this.state.spring
+    })
+    const fall = products.filter(product => {
+      return product.season === 'fall' && this.state.fall
+    })
+    const winter = products.filter(product => {
+      return product.season === 'winter' && this.state.winter
     })
 
-    const shirts = products.filter(product => {
-      return product.type === 'shirt' && this.state.shirts
-    })
-
-    const suits = products.filter(product => {
-      return product.type === 'suit' && this.state.suits
-    })
-
-    this.filteredProducts = [...shoes, ...shirts, ...suits]
+    this.filteredProducts = [...summer, ...winter, ...fall, ...spring]
 
     // seperating products by type
     return (
@@ -40,29 +46,38 @@ class ProductLanding extends Component {
           <label>
             <input
               type="checkbox"
-              name="suits"
+              name="spring"
               //   checked={isChecked}
               onChange={this.toggleCheckboxChange}
             />
-            suits
+            spring
           </label>
           <label>
             <input
               type="checkbox"
-              name="shirts"
+              name="summer"
               //   checked={isChecked}
               onChange={this.toggleCheckboxChange}
             />
-            shirts
+            summer
           </label>
           <label>
             <input
               type="checkbox"
-              name="shoes"
+              name="fall"
               //   checked={isChecked}
               onChange={this.toggleCheckboxChange}
             />
-            shoes
+            fall
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              name="winter"
+              //   checked={isChecked}
+              onChange={this.toggleCheckboxChange}
+            />
+            winter
           </label>
         </div>
         <div>
