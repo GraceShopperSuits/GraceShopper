@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Navbar } from './components'
 import Routes from './routes'
-import { fetchProducts } from './store'
+import { fetchProducts, me } from './store'
 import { connect } from 'react-redux'
 import { withRouter, Route, Switch } from 'react-router-dom'
 
@@ -25,6 +25,7 @@ const mapDispatch = dispatch => {
   return {
     fetchInitialData: () => {
       dispatch(fetchProducts())
+      dispatch(me())
     },
   }
 }

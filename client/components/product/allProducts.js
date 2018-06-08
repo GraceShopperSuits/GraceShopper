@@ -25,7 +25,7 @@ class AllProducts extends Component {
   //need api routes to Link
   render() {
     const products = this.props.products || []
-
+    const user = this.props.user || {}
     const summer = products.filter(product => {
       return product.season === 'Summer' && this.state.summer
     })
@@ -71,11 +71,14 @@ class AllProducts extends Component {
     ]
     // season=Winter&season=Summer&color=Black
     // seperating products by type
+    console.log(user.admin)
     return (
       <div className="Landing">
-        <div>
-          <Link to="/products/add">Add Product</Link>
-        </div>
+        {user.admin ? (
+          <div>
+            <Link to="/products/add">Add Product</Link>
+          </div>
+        ) : null}
 
         <div className="checkbox">
           <label>Select a season: </label>
@@ -167,6 +170,7 @@ class AllProducts extends Component {
 const mapState = state => {
   return {
     products: state.product,
+    user: state.user,
   }
 }
 
