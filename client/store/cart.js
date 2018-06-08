@@ -65,19 +65,3 @@ export const addItemThunk = itemId => dispatch => {
       console.error(error)
     })
 }
-
-// export const fetchProducts = () => {
-//   return dispatch => {
-//     axios
-//       .get('/api/products')
-//       .then(res => dispatch(getProducts(res.data)))
-//       .catch(err => console.error('could not get products', err))
-//   }
-// }
-
-// export const createProduct = product => dispatch => {
-//   axios
-//     .post('/api/products', product)
-//     .then(res => dispatch(addProduct(res.data)))
-//     .catch(error => console.error('could not create', error))
-// }
