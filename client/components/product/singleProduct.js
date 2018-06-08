@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { addItemThunk } from '../../store'
+import { Button } from 'reactstrap'
 
 class SingleProduct extends Component {
   constructor(props) {
@@ -11,11 +13,15 @@ class SingleProduct extends Component {
       size: '',
     }
     this.handleChange = this.handleChange.bind(this)
+    this.handleAddItem = this.handleAddItem.bind(this)
   }
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
     })
+  }
+  handleAddItem(itemId) {
+    this.props.addItem(itemId)
   }
   render() {
     const id = Number(this.props.match.params.productId)
@@ -25,7 +31,7 @@ class SingleProduct extends Component {
         return product.id === id
       })[0] || {}
 
-    console.log('state,', this.state)
+    console.log('state,', this.props)
     return (
       <div className="ProductComponent">
         {singleProduct.id ? (
@@ -47,6 +53,7 @@ class SingleProduct extends Component {
               <option>Pick a size</option>
               <option>{singleProduct.size}</option>
             </select>
+            <Button onClick={() => this.handleAddItem(singleProduct.id)}>Add to Cart</Button>
           </div>
         ) : null}
       </div>
@@ -57,10 +64,19 @@ class SingleProduct extends Component {
 const mapState = state => {
   return {
     products: state.product,
+    cart: state.cart,
+  }
+}
+
+const mapDispatch = dispatch => {
+  return {
+    addItem: itemId => {
+      dispatch(addItemThunk(itemId))
+    },
   }
 }
 
 export default connect(
   mapState,
-  null
+  mapDispatch
 )(SingleProduct)
