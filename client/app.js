@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Navbar } from './components'
 import Routes from './routes'
-import { fetchProducts } from './store/product'
+import { fetchProducts } from './store'
 import { connect } from 'react-redux'
+import { withRouter, Route, Switch } from 'react-router-dom'
 
 class App extends Component {
   componentDidMount() {
@@ -30,7 +31,9 @@ const mapDispatch = dispatch => {
 
 const mapState = null
 
-export default connect(
-  mapState,
-  mapDispatch
-)(App)
+export default withRouter(
+  connect(
+    mapState,
+    mapDispatch
+  )(App)
+)

@@ -2,7 +2,16 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Login, Signup, UserHome, Product, ProductLanding, AddForm, EditForm } from './components'
+import {
+  Login,
+  Signup,
+  UserHome,
+  SingleProduct,
+  AllProducts,
+  AddForm,
+  EditForm,
+  Cart,
+} from './components'
 import { me } from './store'
 
 /**
@@ -19,10 +28,12 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route exact path="/products/edit/:productId" component={EditForm} />
+        <Route exact path="/" component={AllProducts} />
+        <Route exact path="/cart" component={Cart} />
         <Route exact path="/products/add" component={AddForm} />
-        <Route exact path="/products/:productId" component={Product} />
-        <Route exact path="/products" component={ProductLanding} />
+        <Route exact path="/products/:productId/edit" component={EditForm} />
+        <Route exact path="/products/:productId" component={SingleProduct} />
+        <Route exact path="/products" component={AllProducts} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/" component={ProductLanding} />
