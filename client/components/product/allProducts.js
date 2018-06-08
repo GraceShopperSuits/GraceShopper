@@ -79,15 +79,13 @@ class AllProducts extends Component {
 
         <div className="checkbox">
           <label>Select a season: </label>
-          <label>
-            <input
-              type="checkbox"
-              name="spring"
-              onChange={this.toggleCheckboxChange}
-              value="Spring"
-            />
-            Spring{' '}
-          </label>
+          <input
+            type="checkbox"
+            name="spring"
+            onChange={this.toggleCheckboxChange}
+            value="Spring"
+          />
+          Spring{' '}
           <label>
             <input type="checkbox" name="summer" onChange={this.toggleCheckboxChange} />
             Summer

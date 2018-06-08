@@ -31,8 +31,6 @@ class SingleProduct extends Component {
         return product.id === id
       })[0] || {}
     const reviews = singleProduct.reviews || []
-
-    console.log('state,', reviews)
     return (
       <div className="ProductComponent">
         {singleProduct.id ? (
