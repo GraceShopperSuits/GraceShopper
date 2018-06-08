@@ -71,7 +71,6 @@ class AllProducts extends Component {
     ]
     // season=Winter&season=Summer&color=Black
     // seperating products by type
-    console.log(user.admin)
     return (
       <div className="Landing">
         {user.admin ? (

@@ -11,6 +11,7 @@ import {
   AddForm,
   EditForm,
   Cart,
+  ReviewForm,
 } from './components'
 import { me } from './store'
 
@@ -40,7 +41,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
-            <Route path="/products/:productId/review" />
+            <Route path="/products/:productId/review" component={ReviewForm} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

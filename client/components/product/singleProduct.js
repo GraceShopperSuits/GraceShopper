@@ -61,7 +61,9 @@ class SingleProduct extends Component {
             ) : (
               <div>There are no reviews yet! leave the first one?</div>
             )}
-            <Button>Add Review! not working yet :(</Button>
+            <Link to={`/products/${singleProduct.id}/review`}>
+              <Button>Add Review! not working yet :(</Button>
+            </Link>
           </div>
         ) : null}
       </div>

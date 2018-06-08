@@ -13,14 +13,15 @@ class ReviewForm extends Component {
   }
   render() {
     const product = this.props.product
-    const user = this.props.user || {}
+    // const user = this.props.user || {}
     return (
       <div>
         <h1>
-          {user.name} you are editing {product.name}
+          {/* {user.name} you are editing {product.name} */}
+          AHHHHHH
         </h1>
         <form>
-          <label type="text" value={this.state.text} name="text" required onChange={dkfjkd}>
+          <label type="text" value={this.state.text} name="text" required>
             <input />
           </label>
         </form>
