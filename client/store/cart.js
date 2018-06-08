@@ -65,3 +65,14 @@ export const addItemThunk = itemId => dispatch => {
       console.error(error)
     })
 }
+export const removeItemThunk = itemId => dispatch => {
+  return axios
+    .get(`/api/products/${itemId}`)
+    .then(res => res.data)
+    .then(item => {
+      dispatch(removeItem(item))
+    })
+    .catch(error => {
+      console.error(error)
+    })
+}

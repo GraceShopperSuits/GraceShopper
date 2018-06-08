@@ -10,8 +10,14 @@ const reducer = combineReducers({ user, product, cart })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 )
-const store = createStore(reducer, middleware)
+//may need a preloaded state for a session/localstorage
+//check if localStorage.state exists if so, set initial state, otherwise initialState is undefined which will trickle down to reducers
+const initialState = localStorage.state ? JSON.parse(localStorage.state) : undefined
+const store = createStore(reducer, initialState, middleware)
 
+store.subscribe(() => {
+  localStorage.state = JSON.stringify(store.getState())
+})
 export default store
 export * from './user'
 export * from './product'
