@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-class Product extends Component {
+class SingleProduct extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -63,4 +63,4 @@ const mapState = state => {
 export default connect(
   mapState,
   null
-)(Product)
+)(SingleProduct)
