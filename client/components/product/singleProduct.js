@@ -55,11 +55,14 @@ class SingleProduct extends Component {
               <option>{singleProduct.size}</option>
             </select>
             <Button onClick={() => this.handleAddItem(singleProduct.id)}>Add to Cart</Button>
-            {reviews.length
-              ? reviews.map(review => {
-                  return <div key={review.id}>{review.text}</div>
-                })
-              : null}
+            {reviews.length ? (
+              reviews.map(review => {
+                return <div key={review.id}>{review.text}</div>
+              })
+            ) : (
+              <div>There are no reviews yet! leave the first one?</div>
+            )}
+            <Button>Add Review! not working yet :(</Button>
           </div>
         ) : null}
       </div>
