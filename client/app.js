@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Navbar } from './components'
 import Routes from './routes'
-import { fetchProducts } from './store/product'
+import { fetchProducts } from './store'
 import { connect } from 'react-redux'
 import { withRouter, Route, Switch } from 'react-router-dom'
 
