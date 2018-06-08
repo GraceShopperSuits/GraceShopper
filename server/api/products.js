@@ -14,11 +14,7 @@ router.get('/', (req, res, next) => {
   if (req.query && req.query.size) {
     whereObj.size = req.query.size
   }
-  Product.findAll(
-    {
-      where: whereObj
-    }
-  )
+  Product.findAll({ include: [{ all: true }] })
     .then(products => res.json(products))
     .catch(next)
 })
@@ -28,7 +24,7 @@ router.get('/:productId', (req, res, next) => {
   Product.findOne({
     where: {
       id: req.params.productId,
-    }
+    },
   })
     .then(product => res.json(product))
     .catch(next)
