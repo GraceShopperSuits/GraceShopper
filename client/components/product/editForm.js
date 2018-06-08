@@ -38,7 +38,7 @@ class EditForm extends Component {
       this.props.products.filter(check => {
         return check.id === +id
       })[0] || {}
-
+    console.log('product', product)
     return (
       <div>
         <h1>Editing {product.name}</h1>

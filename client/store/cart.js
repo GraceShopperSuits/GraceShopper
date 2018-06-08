@@ -54,18 +54,14 @@ const reducer = (state = {}, action) => {
 
 export default reducer
 
-// export const fetchProducts = () => {
-//   return dispatch => {
-//     axios
-//       .get('/api/products')
-//       .then(res => dispatch(getProducts(res.data)))
-//       .catch(err => console.error('could not get products', err))
-//   }
-// }
-
-// export const createProduct = product => dispatch => {
-//   axios
-//     .post('/api/products', product)
-//     .then(res => dispatch(addProduct(res.data)))
-//     .catch(error => console.error('could not create', error))
-// }
+export const addItemThunk = itemId => dispatch => {
+  return axios
+    .get(`/api/products/${itemId}`)
+    .then(res => res.data)
+    .then(item => {
+      dispatch(addItem(item))
+    })
+    .catch(error => {
+      console.error(error)
+    })
+}
