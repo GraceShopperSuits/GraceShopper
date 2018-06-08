@@ -30,8 +30,9 @@ class SingleProduct extends Component {
       products.filter(product => {
         return product.id === id
       })[0] || {}
+    const reviews = singleProduct.reviews || []
 
-    console.log('state,', this.props)
+    console.log('state,', reviews)
     return (
       <div className="ProductComponent">
         {singleProduct.id ? (
@@ -54,6 +55,11 @@ class SingleProduct extends Component {
               <option>{singleProduct.size}</option>
             </select>
             <Button onClick={() => this.handleAddItem(singleProduct.id)}>Add to Cart</Button>
+            {reviews.length
+              ? reviews.map(review => {
+                  return <div key={review.id}>{review.text}</div>
+                })
+              : null}
           </div>
         ) : null}
       </div>
