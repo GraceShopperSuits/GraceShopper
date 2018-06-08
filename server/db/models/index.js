@@ -1,6 +1,6 @@
 const User = require('./user')
 const Product = require('./product')
-//const Price = require('./price')
+const Order = require('./order')
 /**
  * If we had any associations to make, this would be a great place to put them!
  * ex. if we had another model called BlogPost, we might say:
@@ -14,6 +14,12 @@ const Product = require('./product')
  * for example, we can say: const {User} = require('../db/models')
  * instead of: const User = require('../db/models/user')
  */
+Order.belongsToMany(Product, { through: 'lineItem' })
+// getProduct getProducts addProduct addProducts removeProduct removeProducts
+Product.belongsToMany(Order, { through: 'lineItem' })
+//getOrder getOrders addProduct addProducts removeProduct removeProducts
+User.hasMany(Order)
+// getOrder, setOrder, createOrder, addOrder, removeOrder
 
 // Product.hasMany(Price)
 // //gives product methods, setPrices, getPrices, addPrice, addPrices, setPrices.
@@ -24,6 +30,6 @@ const Product = require('./product')
 
 module.exports = {
   User,
-  Product
-  //Price,
+  Product,
+  Order,
 }

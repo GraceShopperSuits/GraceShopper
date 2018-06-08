@@ -19,6 +19,7 @@ class AddForm extends Component {
     this.handleToggle = this.handleToggle.bind(this)
     this.handleSubmit = this.props.handleSubmit.bind(this)
   }
+
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value })
     console.log(`we're typing ${event.target.name} ${event.target.value}`)
