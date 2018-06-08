@@ -25,7 +25,7 @@ class SingleProduct extends Component {
   }
   render() {
     const id = Number(this.props.match.params.productId)
-    const { products } = this.props
+    const { products, user } = this.props
     const singleProduct =
       products.filter(product => {
         return product.id === id
@@ -41,7 +41,8 @@ class SingleProduct extends Component {
             <h3>{singleProduct.description}</h3>
             <h3>{singleProduct.season} collection</h3>
             <h3>Price: {singleProduct.price}</h3>
-            <Link to={`/products/${singleProduct.id}/edit`}>Edit</Link>
+
+            {user.admin ? <Link to={`/products/${singleProduct.id}/edit`}>Edit</Link> : null}
             <label htmlFor="color">Select a color: </label>
             <select name="color" onChange={this.handleChange}>
               <option value="">Pick a color</option>
@@ -72,6 +73,7 @@ const mapState = state => {
   return {
     products: state.product,
     cart: state.cart,
+    user: state.user,
   }
 }
 
