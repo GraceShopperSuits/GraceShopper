@@ -54,6 +54,18 @@ const reducer = (state = {}, action) => {
 
 export default reducer
 
+export const addItemThunk = itemId => dispatch => {
+  return axios
+    .get(`/api/products/${itemId}`)
+    .then(res => res.data)
+    .then(item => {
+      dispatch(addItem(item))
+    })
+    .catch(error => {
+      console.error(error)
+    })
+}
+
 // export const fetchProducts = () => {
 //   return dispatch => {
 //     axios
