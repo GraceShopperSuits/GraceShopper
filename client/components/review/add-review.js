@@ -12,6 +12,7 @@ class ReviewForm extends Component {
     }
   }
   render() {
+    const product = this.props.product
     const user = this.props.user || {}
     return (
       <div>
