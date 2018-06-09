@@ -8,7 +8,7 @@ class ReviewForm extends Component {
     super(props)
     this.state = {
       text: '',
-      rating: 5,
+      rating: '5',
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleToggle = this.handleToggle.bind(this)
@@ -54,7 +54,9 @@ class ReviewForm extends Component {
               <option>5</option>
             </select>
           </label>
-          <button type="submit">Submit Review</button>
+          <button type="submit" className="btn waves-effect waves-light">
+            Submit Review
+          </button>
         </form>
       </div>
     )
@@ -70,13 +72,13 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleSubmit: function() {
+    handleSubmit: function(event) {
+      event.preventDefault()
       const review = {
         ...this.state,
         userId: +this.props.user.id,
         productId: +this.props.match.params.productId,
       }
-      console.log('THIS IS WORKING AHHH')
       dispatch(createReview(review))
       this.setState({
         text: '',

@@ -26,51 +26,70 @@ class SingleProduct extends Component {
   render() {
     const id = Number(this.props.match.params.productId)
     const { products, user } = this.props
+
     const singleProduct =
       products.filter(product => {
         return product.id === id
       })[0] || {}
+
     const reviews = singleProduct.reviews || []
-    console.log(reviews)
+
     return (
       <div className="ProductComponent">
         {singleProduct.id ? (
           <div>
-            <img src={singleProduct.imageUrl} />
-            <h1>{singleProduct.name}</h1>
-            <h3>{singleProduct.type}</h3>
-            <h3>{singleProduct.description}</h3>
-            <h3>{singleProduct.season} collection</h3>
-            <h3>Price: {singleProduct.price}</h3>
+            <div className="row">
+              <div className="col s6">
+                <img className="responsive-img" src={singleProduct.imageUrl} />
+              </div>
+              <div className="col s6">
+                <h2>{singleProduct.name}</h2>
+                <h4>{`$${singleProduct.price}`}</h4>
+                <p>{`${singleProduct.season} Collection`}</p>
+                <p>{singleProduct.description}</p>
+                <div className="input-field">
+                  <select>
+                    <option value="" disabled>
+                      Choose your color
+                    </option>
+                    <option value="1">color 1</option>
+                  </select>
+                </div>
+                <div className="input-field">
+                  <select>
+                    <option value="" disabled>
+                      Choose your size
+                    </option>
+                    <option value="1">size 1</option>
+                  </select>
+                </div>
+                <button
+                  className="waves-effect waves-light btn"
+                  onClick={() => this.handleAddItem(singleProduct.id)}
+                >
+                  <i className="material-icons center">add_shopping_cart</i>
+                </button>
 
-            {user.admin ? <Link to={`/products/${singleProduct.id}/edit`}>Edit</Link> : null}
-            <label htmlFor="color">Select a color: </label>
-            <select name="color" onChange={this.handleChange}>
-              <option value="">Pick a color</option>
-              <option> {singleProduct.color} </option>
-            </select>
-            <label htmlFor="size">Select a size: </label>
-            <select name="size">
-              <option>Pick a size</option>
-              <option>{singleProduct.size}</option>
-            </select>
-            <Button onClick={() => this.handleAddItem(singleProduct.id)}>Add to Cart</Button>
-            {reviews.length ? (
-              reviews.map(review => {
-                return (
-                  <div key={review.id}>
-                    <h3>Review By {review.user.email}</h3>
-                    <p>{review.text}</p>
-                    <h3>RATING:{review.rating}</h3>
-                  </div>
-                )
-              })
-            ) : (
-              <div>There are no reviews yet! leave the first one?</div>
-            )}
-            <Link to={`/products/${singleProduct.id}/review`}>
-              <Button>Add Review! :(</Button>
-            </Link>
+                {user.admin ? <Link to={`/products/${singleProduct.id}/edit`}>Edit</Link> : null}
+
+                {reviews.length ? (
+                  reviews.map(review => {
+                    return (
+                      <div key={review.id}>
+                        <h3>Review By {review.user.email}</h3>
+                        <p>{review.text}</p>
+                        <h3>RATING:{review.rating}</h3>
+                      </div>
+                    )
+                  })
+                ) : (
+                  <div>There are no reviews yet! leave the first one?</div>
+                )}
+                <Link to={`/products/${singleProduct.id}/review`}>
+                  <Button>Add Review!</Button>
+                </Link>
+              </div>
+            </div>
           </div>
         ) : null}
       </div>

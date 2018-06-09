@@ -16,6 +16,13 @@ const mockUsers = require('./MOCK_USER_DATA.json')
  *
  * Now that you've got the main idea, check it out in practice below!
  */
+const images = [
+  'http://pngimg.com/uploads/suit/suit_PNG8121.png',
+  'https://www.freeiconspng.com/uploads/black-man-in-suit-png-2.png',
+  'https://a.suitsupplycdn.com/images/campaign/eveningwear/landingpage/ss17/tux2-296.png',
+  'https://a.suitsupplycdn.com/images/campaign/eveningwear/landingpage/fw2016/dinner-jacket-296.png',
+  'https://www.miguelsformalwear.com/public/images/img9.png',
+]
 
 async function seed() {
   await db.sync({ force: true })
@@ -37,6 +44,7 @@ async function seed() {
 
   for (let i = 0; i < mockData.length; i++) {
     mockData[i].size = sizeArr[Math.floor(Math.random() * sizeArr.length)]
+    mockData[i].imageUrl = images[Math.floor(Math.random() * images.length)]
     let product = Product.create(mockData[i])
     products.push(product)
   }
