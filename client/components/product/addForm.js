@@ -158,7 +158,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       const product = {
         ...this.state,
       }
-      console.log(product)
+      console.log('selected', product)
       dispatch(createProduct(product))
       this.setState({
         name: '',

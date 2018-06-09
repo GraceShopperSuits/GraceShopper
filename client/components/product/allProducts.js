@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { searchProductThunk } from '../../store/searchReducer'
 
 class AllProducts extends Component {
   constructor(props) {
@@ -16,12 +17,27 @@ class AllProducts extends Component {
       pink: false,
       white: false,
       brown: false,
+
     }
     this.toggleCheckboxChange = this.toggleCheckboxChange.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
   toggleCheckboxChange(event) {
     this.setState({ [event.target.name]: !this.state[event.target.name] })
   }
+
+  handleChange = function (event) {
+    this.setState({ [event.target.name]: event.target.value })
+    console.log('handleChange', event.target.value)
+  }
+
+  handleSubmit = function (event) {
+    event.preventDefault()
+    this.props.getSingleItemKey(event.target.value)
+    console.log('state', this.state)
+  }
+
   //need api routes to Link
   render() {
     const products = this.props.products || []
@@ -74,12 +90,15 @@ class AllProducts extends Component {
     console.log(user.admin)
     return (
       <div className="Landing">
+        <form onSubmit={this.handleSubmit}>
+          <input name="search" placeholder="please search here" onChange={this.handleChange} />
+          <button type="submit">Search</button>
+        </form>
         {user.admin ? (
           <div>
             <Link to="/products/add">Add Product</Link>
           </div>
         ) : null}
-
         <div className="checkbox">
           <label>Select a season: </label>
           <label>
@@ -135,33 +154,33 @@ class AllProducts extends Component {
 
         {this.filteredProducts.length
           ? this.filteredProducts.map(product => {
-              return (
-                <Link to={`/products/${product.id}`} key={product.id}>
-                  <div className="SingleProduct">
-                    <div className="ProductText">
-                      <img src={product.imageUrl} />
-                      <h3>{product.name}</h3>
-                      <p>{product.color}</p>
-                      <p>{product.season}</p>
-                    </div>
+            return (
+              <Link to={`/products/${product.id}`} key={product.id}>
+                <div className="SingleProduct">
+                  <div className="ProductText">
+                    <img src={product.imageUrl} />
+                    <h3>{product.name}</h3>
+                    <p>{product.color}</p>
+                    <p>{product.season}</p>
                   </div>
-                </Link>
-              )
-            })
+                </div>
+              </Link>
+            )
+          })
           : products.map(product => {
-              return (
-                <Link to={`/products/${product.id}`} key={product.id}>
-                  <div className="SingleProduct">
-                    <div className="ProductText">
-                      <img src={product.imageUrl} />
-                      <h3>{product.name}</h3>
-                      <p>{product.color}</p>
-                      <p>{product.season}</p>
-                    </div>
+            return (
+              <Link to={`/products/${product.id}`} key={product.id}>
+                <div className="SingleProduct">
+                  <div className="ProductText">
+                    <img src={product.imageUrl} />
+                    <h3>{product.name}</h3>
+                    <p>{product.color}</p>
+                    <p>{product.season}</p>
                   </div>
-                </Link>
-              )
-            })}
+                </div>
+              </Link>
+            )
+          })}
       </div>
     )
   }
@@ -174,7 +193,17 @@ const mapState = state => {
   }
 }
 
+const mapDispatch = dispatch => {
+  return {
+    getSingleItemKey: (searchedItem) => {
+      console.log('dispatch key is hit')
+
+      // dispatch(searchProductThunk(searchedItem))
+    }
+  }
+}
+
 export default connect(
   mapState,
-  null
+  mapDispatch
 )(AllProducts)
