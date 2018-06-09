@@ -10,7 +10,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
       {isLoggedIn ? (
         <div className="nav-wrapper">
           {/* The navbar will show these links after you log in */}
-          <Link id="logoText" to="/home">
+          <Link id="logoText" to="/products">
             {' '}
             S
             <img
@@ -37,7 +37,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
       ) : (
         <div className="nav-wrapper">
           {/* The navbar will show these links before you log in */}
-          <Link id="logoText" to="/home">
+          <Link id="logoText" to="/products">
             {' '}
             S
             <img
