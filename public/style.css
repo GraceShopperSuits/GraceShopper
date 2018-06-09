@@ -17,7 +17,8 @@ nav a {
 }
 
 .nav-wrapper {
-  background-color: #37474f;
+  /* background-color: #37474f; */
+  background-color: black;
 }
 form div {
   margin: 1rem;
