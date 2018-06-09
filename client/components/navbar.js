@@ -8,24 +8,45 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
     <nav>
       {isLoggedIn ? (
-        <div>
+        <div className="nav-wrapper">
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
-          <Link to="/">All Products</Link>
-          <Link to="/cart">Shopping Cart</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
+          <ul className="right hide-on-med-and-down">
+            <li>
+              <Link to="/">All Products</Link>
+            </li>
+            <li>
+              <Link to="/cart">Shopping Cart</Link>
+            </li>
+            <li>
+              <a href="#" onClick={handleClick}>
+                Logout
           </a>
-          <Link to="/">All Products</Link>
+            </li>
+
+            <Link to="/">All Products</Link>
+          </ul>
+
         </div>
       ) : (
-          <div>
+          <div className="nav-wrapper">
             {/* The navbar will show these links before you log in */}
             <Link to="/home">Home</Link>
-            <Link to="/">All Products</Link>
-            <Link to="/cart">Shopping Cart</Link>
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Sign Up</Link>
+
+            <ul className="right hide-on-med-and-down">
+              <li>
+                <Link to="/">All Products</Link>
+              </li>
+              <li>
+                <Link to="/cart">Shopping Cart</Link>
+              </li>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+              <li>
+                <Link to="/signup">Sign Up</Link>
+              </li>
+            </ul>
           </div>
         )}
     </nav>
