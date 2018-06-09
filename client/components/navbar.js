@@ -24,7 +24,8 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
             </li>
             <li>
               <Link to="/cart">
-                <i className="material-icons">shopping_cart</i>
+                <i className="material-icons">shopping_cart 2</i>
+                <span className="badge">1</span>
               </Link>
             </li>
             <li>
