@@ -40,12 +40,15 @@ class SingleProduct extends Component {
           <div>
             <div className="row">
               <div className="col s6">
-                <img src="http://pngimg.com/uploads/suit/suit_PNG8121.png" />
+                <img
+                  className="responsive-img"
+                  src="http://pngimg.com/uploads/suit/suit_PNG8121.png"
+                />
               </div>
               <div className="col s6">
-                <h1>{singleProduct.name}</h1>
-                <h3>{`$${singleProduct.price}`}</h3>
-                <h3>{`${singleProduct.season} Collection`}</h3>
+                <h2>{singleProduct.name}</h2>
+                <h4>{`$${singleProduct.price}`}</h4>
+                <p>{`${singleProduct.season} Collection`}</p>
                 <p>{singleProduct.description}</p>
                 <div className="input-field">
                   <select>
