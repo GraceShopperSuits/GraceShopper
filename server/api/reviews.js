@@ -7,4 +7,7 @@ router.post('/', async (req, res, next) => {
   review.setProduct(req.body.productId)
   review.setUser(req.body.userId)
   res.json(review)
+  console.log(req.body)
 })
+
+module.exports = router

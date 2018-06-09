@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
   if (req.query && req.query.size) {
     whereObj.size = req.query.size
   }
-  Product.findAll({ include: [{ all: true }] })
+  Product.findAll({ include: [{ all: true, nested: true }] })
     .then(products => res.json(products))
     .catch(next)
 })
@@ -44,6 +44,14 @@ router.post('/', async (req, res, next) => {
   })
   if (!product) res.sendStatus(400)
   res.json(product)
+})
+
+router.put('/:id', async (req, res, next) => {
+  const id = +req.params.id
+  let product = await Product.findById(id)
+  if (!product) res.sendStatus(404)
+  await product.update(req.body)
+  res.status(201).json(product)
 })
 
 // router.post('/', (req, res, next) => {

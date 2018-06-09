@@ -31,6 +31,7 @@ class SingleProduct extends Component {
         return product.id === id
       })[0] || {}
     const reviews = singleProduct.reviews || []
+    console.log(reviews)
     return (
       <div className="ProductComponent">
         {singleProduct.id ? (
@@ -56,13 +57,19 @@ class SingleProduct extends Component {
             <Button onClick={() => this.handleAddItem(singleProduct.id)}>Add to Cart</Button>
             {reviews.length ? (
               reviews.map(review => {
-                return <div key={review.id}>{review.text}</div>
+                return (
+                  <div key={review.id}>
+                    <h3>Review By {review.user.email}</h3>
+                    <p>{review.text}</p>
+                    <h3>RATING:{review.rating}</h3>
+                  </div>
+                )
               })
             ) : (
               <div>There are no reviews yet! leave the first one?</div>
             )}
             <Link to={`/products/${singleProduct.id}/review`}>
-              <Button>Add Review! not working yet :(</Button>
+              <Button>Add Review! :(</Button>
             </Link>
           </div>
         ) : null}

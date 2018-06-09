@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { editProduct } from '../../store/product'
+import { updateProduct } from '../../store/product'
 
 class EditForm extends Component {
   constructor(props) {
@@ -19,27 +19,36 @@ class EditForm extends Component {
     this.handleToggle = this.handleToggle.bind(this)
     this.handleSubmit = this.props.handleSubmit.bind(this)
   }
+  // componentDidMount() {
+
+  // }
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value })
-    console.log(`we're typing ${event.target.name} ${event.target.value}`)
+    // console.log(`we're typing ${event.target.name} ${event.target.value}`)
   }
 
   handleToggle(event) {
     this.setState({ [event.target.name]: event.target.value })
-    console.log(event.target.value, event.target.name)
+    // console.log(event.target.value, event.target.name)
   }
 
-  // handleSubmit(event) {
-
-  // }
-
   render() {
+    const id = this.props.match.params.productId
+    // console.log('props', this.props)
+    // console.log('ID', id)
+    const product =
+      this.props.products.filter(check => {
+        return check.id === +id
+      })[0] || {}
+    // console.log('product', product)
     return (
       <div>
+        <h1>Editing {product.name}</h1>
         <form onSubmit={this.handleSubmit}>
           <label>
             Name
             <input
+              placeholder={product.name}
               type="text"
               value={this.state.name}
               name="name"
@@ -50,6 +59,7 @@ class EditForm extends Component {
           <label>
             Description
             <input
+              placeholder={product.description}
               type="text"
               value={this.state.description}
               name="description"
@@ -60,6 +70,7 @@ class EditForm extends Component {
           <label>
             Price
             <input
+              placeholder={product.price}
               type="number"
               value={this.state.price}
               name="price"
@@ -73,6 +84,7 @@ class EditForm extends Component {
           <label>
             Image Url
             <input
+              placeholder={product.imageUrl}
               type="text"
               value={this.state.imageUrl}
               name="imageUrl"
@@ -84,19 +96,20 @@ class EditForm extends Component {
           <label>
             quantity
             <input
+              placeholder={product.quantity}
               min="1"
               max="1000"
               type="number"
               value={this.state.quantity}
               name="quantity"
               onChange={this.handleChange}
-              required
             />
           </label>
 
           <label>
             Season
             <select name="season" value={this.state.season} onChange={this.handleToggle}>
+              <option>Please select</option>
               <option>Fall</option>
               <option>Summer</option>
               <option>Winter</option>
@@ -106,6 +119,7 @@ class EditForm extends Component {
           <label>
             Color
             <select name="color" value={this.state.color} onChange={this.handleToggle}>
+              <option>Please select</option>
               <option>Black</option>
               <option>Navy</option>
               <option>Brown</option>
@@ -117,6 +131,7 @@ class EditForm extends Component {
           <label>
             Size
             <select name="size" value={this.state.size} onChange={this.handleToggle}>
+              <option>Please select</option>
               <option>36</option>
               <option>38</option>
               <option>40</option>
@@ -132,9 +147,11 @@ class EditForm extends Component {
   }
 }
 
-// export const mapStateToProps = function(state) {
-//   return {}
-// }
+export const mapStateToProps = function (state) {
+  return {
+    products: state.product
+  }
+}
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
@@ -143,8 +160,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       const product = {
         ...this.state,
       }
-      console.log(product)
-      dispatch(editProduct(product))
+      const id = this.props.match.params.productId
+      // console.log('mapdispatchprops', this.props.match.params.productId)
+      dispatch(updateProduct(product, id))
+
       this.setState({
         name: '',
         description: '',
@@ -160,6 +179,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(EditForm)

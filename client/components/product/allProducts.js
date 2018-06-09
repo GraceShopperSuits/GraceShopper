@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { searchProductThunk } from '../../store/searchReducer'
 
 class AllProducts extends Component {
   constructor(props) {
@@ -16,69 +17,58 @@ class AllProducts extends Component {
       pink: false,
       white: false,
       brown: false,
+      search: ''
+
     }
     this.toggleCheckboxChange = this.toggleCheckboxChange.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
   toggleCheckboxChange(event) {
     this.setState({ [event.target.name]: !this.state[event.target.name] })
   }
+
+  handleChange = function (event) {
+    this.setState({ [event.target.name]: event.target.value })
+  }
+
+  handleSubmit = function (event) {
+    event.preventDefault()
+    this.setState({
+      search: event.target.search.value
+    })
+    // this.props.getSingleItemKey(event.target.value)
+  }
+
   //need api routes to Link
   render() {
-    const products = this.props.products || []
+    let products = this.props.products || []
     const user = this.props.user || {}
-    const summer = products.filter(product => {
-      return product.season === 'Summer' && this.state.summer
-    })
-    const spring = products.filter(product => {
-      return product.season === 'Spring' && this.state.spring
-    })
-    const autumn = products.filter(product => {
-      return product.season === 'Autumn' && this.state.autumn
-    })
-    const winter = products.filter(product => {
-      return product.season === 'Winter' && this.state.winter
-    })
-    const black = products.filter(product => {
-      return product.color === 'Black' && this.state.black
-    })
-    const navy = products.filter(product => {
-      return product.color === 'Navy' && this.state.navy
-    })
-    const maroon = products.filter(product => {
-      return product.color === 'Maroon' && this.state.maroon
-    })
-    const pink = products.filter(product => {
-      return product.color === 'Pink' && this.state.pink
-    })
-    const white = products.filter(product => {
-      return product.color === 'White' && this.state.white
-    })
-    const brown = products.filter(product => {
-      return product.color === 'Brown' && this.state.brown
-    })
+    products = this.state.search ? products.filter(product => product.name.toLowerCase().includes(this.state.search.toLowerCase())) : products
+    products = this.state.spring ? products.filter(product => product.season === 'Spring') : products
+    products = this.state.summer ? products.filter(product => product.season === 'Summer') : products
+    products = this.state.winter ? products.filter(product => product.season === 'Winter') : products
+    products = this.state.autumn ? products.filter(product => product.season === 'Autumn') : products
+    products = this.state.pink ? products.filter(product => product.color === 'Pink') : products
+    products = this.state.navy ? products.filter(product => product.color === 'Navy') : products
+    products = this.state.black ? products.filter(product => product.color === 'Black') : products
+    products = this.state.white ? products.filter(product => product.color === 'White') : products
+    products = this.state.brown ? products.filter(product => product.color === 'Brown') : products
+    products = this.state.maroon ? products.filter(product => product.color === 'Maroon') : products
 
-    this.filteredProducts = [
-      ...summer,
-      ...winter,
-      ...autumn,
-      ...spring,
-      ...black,
-      ...navy,
-      ...maroon,
-      ...pink,
-      ...white,
-      ...brown,
-    ]
     // season=Winter&season=Summer&color=Black
     // seperating products by type
     return (
       <div className="Landing">
+        <form onSubmit={this.handleSubmit}>
+          <input name="search" placeholder="please search here" />
+          <button type="submit">Search</button>
+        </form>
         {user.admin ? (
           <div>
             <Link to="/products/add">Add Product</Link>
           </div>
         ) : null}
-
         <div className="checkbox">
           <label>Select a season: </label>
           <input
@@ -130,35 +120,21 @@ class AllProducts extends Component {
           </label>
         </div>
 
-        {this.filteredProducts.length
-          ? this.filteredProducts.map(product => {
-              return (
-                <Link to={`/products/${product.id}`} key={product.id}>
-                  <div className="SingleProduct">
-                    <div className="ProductText">
-                      <img src={product.imageUrl} />
-                      <h3>{product.name}</h3>
-                      <p>{product.color}</p>
-                      <p>{product.season}</p>
-                    </div>
-                  </div>
-                </Link>
-              )
-            })
-          : products.map(product => {
-              return (
-                <Link to={`/products/${product.id}`} key={product.id}>
-                  <div className="SingleProduct">
-                    <div className="ProductText">
-                      <img src={product.imageUrl} />
-                      <h3>{product.name}</h3>
-                      <p>{product.color}</p>
-                      <p>{product.season}</p>
-                    </div>
-                  </div>
-                </Link>
-              )
-            })}
+        {products.length ? products.map(product => {
+          return (
+            <Link to={`/products/${product.id}`} key={product.id}>
+              <div className="SingleProduct">
+                <div className="ProductText">
+                  <img src={product.imageUrl} />
+                  <h3>{product.name}</h3>
+                  <p>{product.color}</p>
+                  <p>{product.season}</p>
+                </div>
+              </div>
+            </Link>
+          )
+        }) : null
+        }
       </div>
     )
   }
@@ -170,6 +146,7 @@ const mapState = state => {
     user: state.user,
   }
 }
+
 
 export default connect(
   mapState,
