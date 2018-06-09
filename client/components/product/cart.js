@@ -25,7 +25,11 @@ class Cart extends Component {
         cartArr.push(currProduct[0])
       }
     }
-    console.log(cartArr)
+    let total = 0
+    cartArr.forEach(item => {
+      total += item.price * item.saleQuantity
+    })
+
     return (
       <div>
         <Table bordered>
@@ -45,7 +49,14 @@ class Cart extends Component {
                       <td>{item.saleQuantity}</td>
                       <td>{item.price * item.saleQuantity}</td>
                       <td>
-                        <Button onClick={() => this.props.addItem(item.id)}>+</Button>
+                        <Button
+                          onClick={() => {
+                            this.props.addItem(item.id)
+                            total += item.price
+                          }}
+                        >
+                          +
+                        </Button>
                       </td>
                       <td>
                         <Button onClick={() => this.props.removeItem(item.id)}>-</Button>
@@ -54,6 +65,11 @@ class Cart extends Component {
                   )
                 })
               : null}
+            <tr>
+              <td />
+              <td />
+              <td>{`Total:  $${total}`}</td>
+            </tr>
           </tbody>
         </Table>
         <Button onClick={this.props.clearCart}>Clear Cart</Button>
