@@ -40,10 +40,7 @@ class SingleProduct extends Component {
           <div>
             <div className="row">
               <div className="col s6">
-                <img
-                  className="responsive-img"
-                  src="http://pngimg.com/uploads/suit/suit_PNG8121.png"
-                />
+                <img className="responsive-img" src={singleProduct.imageUrl} />
               </div>
               <div className="col s6">
                 <h2>{singleProduct.name}</h2>

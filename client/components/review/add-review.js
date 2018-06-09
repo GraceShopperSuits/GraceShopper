@@ -54,7 +54,9 @@ class ReviewForm extends Component {
               <option>5</option>
             </select>
           </label>
-          <button type="submit">Submit Review</button>
+          <button type="submit" className="btn waves-effect waves-light">
+            Submit Review
+          </button>
         </form>
       </div>
     )

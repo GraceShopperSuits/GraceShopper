@@ -21,7 +21,6 @@ const images = [
   'https://www.freeiconspng.com/uploads/black-man-in-suit-png-2.png',
   'https://a.suitsupplycdn.com/images/campaign/eveningwear/landingpage/ss17/tux2-296.png',
   'https://a.suitsupplycdn.com/images/campaign/eveningwear/landingpage/fw2016/dinner-jacket-296.png',
-  'https://5.imimg.com/data5/RK/PC/MY-23863369/2-button-2pc-formal-suit-500x500.png',
   'https://www.miguelsformalwear.com/public/images/img9.png',
 ]
 
