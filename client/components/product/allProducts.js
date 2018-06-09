@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { searchProductThunk } from '../../store/searchReducer'
 
 class AllProducts extends Component {
   constructor(props) {
@@ -37,7 +36,6 @@ class AllProducts extends Component {
     this.setState({
       search: event.target.search.value
     })
-    // this.props.getSingleItemKey(event.target.value)
   }
 
   //need api routes to Link
@@ -60,15 +58,13 @@ class AllProducts extends Component {
     // seperating products by type
     return (
       <div className="Landing">
-        <form onSubmit={this.handleSubmit}>
-          <input name="search" placeholder="please search here" />
-          <button type="submit">Search</button>
-        </form>
         {user.admin ? (
           <div>
-            <Link to="/products/add">Add Product</Link>
+            <Link className="btn-small" to="/products/add">Add Product</Link>
           </div>
         ) : null}
+<<<<<<< HEAD
+=======
         <div className="checkbox">
           <label>Select a season: </label>
           <input
@@ -91,50 +87,116 @@ class AllProducts extends Component {
             Winter
           </label>
         </div>
+>>>>>>> master
 
-        <div className="checkbox">
-          <label>Select a color: </label>
-          <label>
-            <input type="checkbox" name="black" onChange={this.toggleCheckboxChange} />
-            Black
-          </label>
-          <label>
-            <input type="checkbox" name="navy" onChange={this.toggleCheckboxChange} />
-            Navy
-          </label>
-          <label>
-            <input type="checkbox" name="maroon" onChange={this.toggleCheckboxChange} />
-            Maroon
-          </label>
-          <label>
-            <input type="checkbox" name="pink" onChange={this.toggleCheckboxChange} />
-            Pink
-          </label>
-          <label>
-            <input type="checkbox" name="white" onChange={this.toggleCheckboxChange} />
-            White
-          </label>
-          <label>
-            <input type="checkbox" name="brown" onChange={this.toggleCheckboxChange} />
-            Brown
-          </label>
-        </div>
+        <div className="row">
 
-        {products.length ? products.map(product => {
-          return (
-            <Link to={`/products/${product.id}`} key={product.id}>
-              <div className="SingleProduct">
-                <div className="ProductText">
-                  <img src={product.imageUrl} />
-                  <h3>{product.name}</h3>
-                  <p>{product.color}</p>
-                  <p>{product.season}</p>
-                </div>
+          <div className="col s2">
+            <form className="checkbox">
+              <p>Select a season: </p>
+              <p>
+                <label>
+                  <input type="checkbox" name="spring"
+                    onChange={this.toggleCheckboxChange}
+                    value="Spring" />
+                  <span>Spring</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input type="checkbox" name="summer"
+                    onChange={this.toggleCheckboxChange}
+                    value="Summer" />
+                  <span>Summer</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input type="checkbox" name="autumn"
+                    onChange={this.toggleCheckboxChange}
+                    value="Autumn" />
+                  <span>Autumn</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input type="checkbox" name="winter"
+                    onChange={this.toggleCheckboxChange}
+                    value="Winter" />
+                  <span>Winter</span>
+                </label>
+              </p>
+            </form>
+
+            <div className="checkbox">
+              <p>Select a color: </p>
+              <p>
+                <label>
+                  <input type="checkbox" name="black" onChange={this.toggleCheckboxChange} />
+                  <span>Black</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input type="checkbox" name="navy" onChange={this.toggleCheckboxChange} />
+                  <span>Navy</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input type="checkbox" name="maroon" onChange={this.toggleCheckboxChange} />
+                  <span>Maroon</span>
+                </label>
+              </p><p>
+                <label>
+                  <input type="checkbox" name="brown" onChange={this.toggleCheckboxChange} />
+                  <span>Brown</span>
+                </label>
+              </p><p>
+                <label>
+                  <input type="checkbox" name="pink" onChange={this.toggleCheckboxChange} />
+                  <span>Pink</span>
+                </label>
+              </p><p>
+                <label>
+                  <input type="checkbox" name="white" onChange={this.toggleCheckboxChange} />
+                  <span>White</span>
+                </label>
+              </p>            </div>
+          </div>
+          <div className="col s10">
+            <form onSubmit={this.handleSubmit}>
+              <div className="input-field">
+                <input name="search" placeholder="please search here" />
               </div>
-            </Link>
-          )
-        }) : null
-        }
+
+            </form>
+            <div className="row">
+              {products.length ? products.map(product => {
+                return (
+                  <div className="col s3" key={product.id}>
+                    <div className="card">
+                      <div className="card-image">
+                        <img src={product.imageUrl} />
+                        <a className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">add_shopping_cart</i></a>
+                      </div>
+                      <div className="card-content">
+                        <Link to={`/products/${product.id}`} key={product.id}>
+                          <span className="card-title">{product.name}</span>
+                          <p>{`$${product.price}`}</p>
+                          <p>{product.color}</p>
+                          <p>{`${product.season} Collection`}</p>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })
+                : null
+              }
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

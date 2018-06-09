@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  background-color: #eceff1
 }
 
 a {
@@ -15,6 +16,9 @@ nav a {
   margin: 1em;
 }
 
+.nav-wrapper {
+  background-color: #37474f
+}
 form div {
   margin: 1em;
   display: inline-block;

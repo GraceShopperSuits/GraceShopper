@@ -6,27 +6,48 @@ import { logout } from '../store'
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
-    <h1>SUITZ</h1>
     <nav>
       {isLoggedIn ? (
-        <div>
+        <div className="nav-wrapper">
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
+          <ul className="right hide-on-med-and-down">
+            <li>
+              <Link to="/products">All Products</Link>
+            </li>
+            <li>
+              <Link to="/cart"><i className="material-icons">shopping_cart</i></Link>
+            </li>
+            <li>
+              <a href="#" onClick={handleClick}>
+                Logout
           </a>
-          <Link to="/">All Products</Link>
+            </li>
+          </ul>
         </div>
       ) : (
-        <div>
-          {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-          <Link to="/">All Products</Link>
-        </div>
-      )}
+          <div className="nav-wrapper">
+            {/* The navbar will show these links before you log in */}
+            <Link to="/home">Home</Link>
+
+            <ul className="right hide-on-med-and-down">
+              <li>
+                <Link to="/products">All Products</Link>
+              </li>
+              <li>
+                <Link to="/cart"><i className="material-icons">shopping_cart</i></Link>
+              </li>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+              <li>
+                <Link to="/signup">Sign Up</Link>
+              </li>
+            </ul>
+          </div>
+        )}
     </nav>
-    <hr />
+    {/* <hr /> */}
   </div>
 )
 
