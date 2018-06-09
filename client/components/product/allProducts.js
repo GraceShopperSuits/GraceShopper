@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { addItemThunk } from '../../store'
 
 class AllProducts extends Component {
   constructor(props) {
@@ -181,7 +182,10 @@ class AllProducts extends Component {
                         <div className="card">
                           <div className="card-image">
                             <img className="responsive-img" src={product.imageUrl} />
-                            <a className="btn-floating halfway-fab waves-effect waves-light blue-grey darken-4">
+                            <a
+                              className="btn-floating halfway-fab waves-effect waves-light blue-grey darken-4"
+                              onClick={() => this.props.addItem(product.id)}
+                            >
                               <i className="material-icons">add_shopping_cart</i>
                             </a>
                           </div>
@@ -213,7 +217,15 @@ const mapState = state => {
   }
 }
 
+const mapDispatch = dispatch => {
+  return {
+    addItem: itemId => {
+      dispatch(addItemThunk(itemId))
+    },
+  }
+}
+
 export default connect(
   mapState,
-  null
+  mapDispatch
 )(AllProducts)
