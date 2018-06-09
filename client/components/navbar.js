@@ -13,20 +13,17 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           <Link to="/home">Home</Link>
           <ul className="right hide-on-med-and-down">
             <li>
-              <Link to="/">All Products</Link>
+              <Link to="/products">All Products</Link>
             </li>
             <li>
-              <Link to="/cart">Shopping Cart</Link>
+              <Link to="/cart"><i className="material-icons">shopping_cart</i></Link>
             </li>
             <li>
               <a href="#" onClick={handleClick}>
                 Logout
           </a>
             </li>
-
-            <Link to="/">All Products</Link>
           </ul>
-
         </div>
       ) : (
           <div className="nav-wrapper">
@@ -35,10 +32,10 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 
             <ul className="right hide-on-med-and-down">
               <li>
-                <Link to="/">All Products</Link>
+                <Link to="/products">All Products</Link>
               </li>
               <li>
-                <Link to="/cart">Shopping Cart</Link>
+                <Link to="/cart"><i className="material-icons">shopping_cart</i></Link>
               </li>
               <li>
                 <Link to="/login">Login</Link>

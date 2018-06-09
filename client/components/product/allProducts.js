@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { searchProductThunk } from '../../store/searchReducer'
 
 class AllProducts extends Component {
   constructor(props) {
@@ -37,7 +36,6 @@ class AllProducts extends Component {
     this.setState({
       search: event.target.search.value
     })
-    // this.props.getSingleItemKey(event.target.value)
   }
 
   //need api routes to Link
@@ -62,7 +60,7 @@ class AllProducts extends Component {
       <div className="Landing">
         {user.admin ? (
           <div>
-            <Link to="/products/add">Add Product</Link>
+            <Link className="btn-small" to="/products/add">Add Product</Link>
           </div>
         ) : null}
 
@@ -141,27 +139,37 @@ class AllProducts extends Component {
                 </label>
               </p>            </div>
           </div>
-
           <div className="col s10">
             <form onSubmit={this.handleSubmit}>
-              <input name="search" placeholder="please search here" />
-              <button type="submit">Search</button>
+              <div className="input-field">
+                <input name="search" placeholder="please search here" />
+              </div>
+
             </form>
-            {products.length ? products.map(product => {
-              return (
-                <Link to={`/products/${product.id}`} key={product.id}>
-                  <div className="SingleProduct">
-                    <div className="ProductText">
-                      <img src={product.imageUrl} />
-                      <h3>{product.name}</h3>
-                      <p>{product.color}</p>
-                      <p>{product.season}</p>
+            <div className="row">
+              {products.length ? products.map(product => {
+                return (
+                  <div className="col s3" key={product.id}>
+                    <div className="card">
+                      <div className="card-image">
+                        <img src={product.imageUrl} />
+                        <a className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">add_shopping_cart</i></a>
+                      </div>
+                      <div className="card-content">
+                        <Link to={`/products/${product.id}`} key={product.id}>
+                          <span className="card-title">{product.name}</span>
+                          <p>{`$${product.price}`}</p>
+                          <p>{product.color}</p>
+                          <p>{`${product.season} Collection`}</p>
+                        </Link>
+                      </div>
                     </div>
                   </div>
-                </Link>
-              )
-            }) : null
-            }
+                )
+              })
+                : null
+              }
+            </div>
           </div>
         </div>
       </div>
