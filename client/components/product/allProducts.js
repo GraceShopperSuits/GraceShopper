@@ -63,6 +63,31 @@ class AllProducts extends Component {
             <Link className="btn-small" to="/products/add">Add Product</Link>
           </div>
         ) : null}
+<<<<<<< HEAD
+=======
+        <div className="checkbox">
+          <label>Select a season: </label>
+          <input
+            type="checkbox"
+            name="spring"
+            onChange={this.toggleCheckboxChange}
+            value="Spring"
+          />
+          Spring{' '}
+          <label>
+            <input type="checkbox" name="summer" onChange={this.toggleCheckboxChange} />
+            Summer
+          </label>
+          <label>
+            <input type="checkbox" name="autumn" onChange={this.toggleCheckboxChange} />
+            Autumn
+          </label>
+          <label>
+            <input type="checkbox" name="winter" onChange={this.toggleCheckboxChange} />
+            Winter
+          </label>
+        </div>
+>>>>>>> master
 
         <div className="row">
 

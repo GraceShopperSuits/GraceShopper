@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const { User, Product } = require('../server/db/models')
+const { User, Product, Review } = require('../server/db/models')
 const mockData = require('./MOCK_DATA.json')
 const mockUsers = require('./MOCK_USER_DATA.json')
 
@@ -41,6 +41,18 @@ async function seed() {
     products.push(product)
   }
   await Promise.all(products)
+
+  const reviews = []
+  for (let i = 0; i < 20; i++) {
+    let review = await Review.create({ text: 'hihihihihihihi', rating: '4' })
+    // await associateProduct.addReview(review)
+    await review.setProduct(1)
+    await review.setUser(1)
+
+    reviews.push(review)
+  }
+
+  // const resolvedReviews = await Promise.all(reviews)
 
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
