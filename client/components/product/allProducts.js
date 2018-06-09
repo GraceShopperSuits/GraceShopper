@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { addItemThunk } from '../../store'
 
 class AllProducts extends Component {
   constructor(props) {
@@ -16,8 +17,7 @@ class AllProducts extends Component {
       pink: false,
       white: false,
       brown: false,
-      search: ''
-
+      search: '',
     }
     this.toggleCheckboxChange = this.toggleCheckboxChange.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -27,14 +27,14 @@ class AllProducts extends Component {
     this.setState({ [event.target.name]: !this.state[event.target.name] })
   }
 
-  handleChange = function (event) {
+  handleChange = function(event) {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  handleSubmit = function (event) {
+  handleSubmit = function(event) {
     event.preventDefault()
     this.setState({
-      search: event.target.search.value
+      search: event.target.search.value,
     })
   }
 
@@ -42,11 +42,23 @@ class AllProducts extends Component {
   render() {
     let products = this.props.products || []
     const user = this.props.user || {}
-    products = this.state.search ? products.filter(product => product.name.toLowerCase().includes(this.state.search.toLowerCase())) : products
-    products = this.state.spring ? products.filter(product => product.season === 'Spring') : products
-    products = this.state.summer ? products.filter(product => product.season === 'Summer') : products
-    products = this.state.winter ? products.filter(product => product.season === 'Winter') : products
-    products = this.state.autumn ? products.filter(product => product.season === 'Autumn') : products
+    products = this.state.search
+      ? products.filter(product =>
+          product.name.toLowerCase().includes(this.state.search.toLowerCase())
+        )
+      : products
+    products = this.state.spring
+      ? products.filter(product => product.season === 'Spring')
+      : products
+    products = this.state.summer
+      ? products.filter(product => product.season === 'Summer')
+      : products
+    products = this.state.winter
+      ? products.filter(product => product.season === 'Winter')
+      : products
+    products = this.state.autumn
+      ? products.filter(product => product.season === 'Autumn')
+      : products
     products = this.state.pink ? products.filter(product => product.color === 'Pink') : products
     products = this.state.navy ? products.filter(product => product.color === 'Navy') : products
     products = this.state.black ? products.filter(product => product.color === 'Black') : products
@@ -60,69 +72,57 @@ class AllProducts extends Component {
       <div className="Landing">
         {user.admin ? (
           <div>
-            <Link className="btn-small" to="/products/add">Add Product</Link>
+            <Link className="btn-small" to="/products/add">
+              Add Product
+            </Link>
           </div>
         ) : null}
-<<<<<<< HEAD
-=======
-        <div className="checkbox">
-          <label>Select a season: </label>
-          <input
-            type="checkbox"
-            name="spring"
-            onChange={this.toggleCheckboxChange}
-            value="Spring"
-          />
-          Spring{' '}
-          <label>
-            <input type="checkbox" name="summer" onChange={this.toggleCheckboxChange} />
-            Summer
-          </label>
-          <label>
-            <input type="checkbox" name="autumn" onChange={this.toggleCheckboxChange} />
-            Autumn
-          </label>
-          <label>
-            <input type="checkbox" name="winter" onChange={this.toggleCheckboxChange} />
-            Winter
-          </label>
-        </div>
->>>>>>> master
 
         <div className="row">
-
           <div className="col s2">
             <form className="checkbox">
               <p>Select a season: </p>
               <p>
                 <label>
-                  <input type="checkbox" name="spring"
+                  <input
+                    type="checkbox"
+                    name="spring"
                     onChange={this.toggleCheckboxChange}
-                    value="Spring" />
+                    value="Spring"
+                  />
                   <span>Spring</span>
                 </label>
               </p>
               <p>
                 <label>
-                  <input type="checkbox" name="summer"
+                  <input
+                    type="checkbox"
+                    name="summer"
                     onChange={this.toggleCheckboxChange}
-                    value="Summer" />
+                    value="Summer"
+                  />
                   <span>Summer</span>
                 </label>
               </p>
               <p>
                 <label>
-                  <input type="checkbox" name="autumn"
+                  <input
+                    type="checkbox"
+                    name="autumn"
                     onChange={this.toggleCheckboxChange}
-                    value="Autumn" />
+                    value="Autumn"
+                  />
                   <span>Autumn</span>
                 </label>
               </p>
               <p>
                 <label>
-                  <input type="checkbox" name="winter"
+                  <input
+                    type="checkbox"
+                    name="winter"
                     onChange={this.toggleCheckboxChange}
-                    value="Winter" />
+                    value="Winter"
+                  />
                   <span>Winter</span>
                 </label>
               </p>
@@ -147,53 +147,61 @@ class AllProducts extends Component {
                   <input type="checkbox" name="maroon" onChange={this.toggleCheckboxChange} />
                   <span>Maroon</span>
                 </label>
-              </p><p>
+              </p>
+              <p>
                 <label>
                   <input type="checkbox" name="brown" onChange={this.toggleCheckboxChange} />
                   <span>Brown</span>
                 </label>
-              </p><p>
+              </p>
+              <p>
                 <label>
                   <input type="checkbox" name="pink" onChange={this.toggleCheckboxChange} />
                   <span>Pink</span>
                 </label>
-              </p><p>
+              </p>
+              <p>
                 <label>
                   <input type="checkbox" name="white" onChange={this.toggleCheckboxChange} />
                   <span>White</span>
                 </label>
-              </p>            </div>
+              </p>{' '}
+            </div>
           </div>
           <div className="col s10">
             <form onSubmit={this.handleSubmit}>
               <div className="input-field">
                 <input name="search" placeholder="please search here" />
               </div>
-
             </form>
             <div className="row">
-              {products.length ? products.map(product => {
-                return (
-                  <div className="col s3" key={product.id}>
-                    <div className="card">
-                      <div className="card-image">
-                        <img src={product.imageUrl} />
-                        <a className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">add_shopping_cart</i></a>
+              {products.length
+                ? products.map(product => {
+                    return (
+                      <div className="col s3" key={product.id}>
+                        <div className="card">
+                          <div className="card-image">
+                            <img className="responsive-img" src={product.imageUrl} />
+                            <a
+                              className="btn-floating halfway-fab waves-effect waves-light blue-grey darken-4"
+                              onClick={() => this.props.addItem(product.id)}
+                            >
+                              <i className="material-icons">add_shopping_cart</i>
+                            </a>
+                          </div>
+                          <div className="card-content">
+                            <Link to={`/products/${product.id}`} key={product.id}>
+                              <span className="card-title">{product.name}</span>
+                              <p>{`$${product.price}`}</p>
+                              <p>{product.color}</p>
+                              <p>{`${product.season} Collection`}</p>
+                            </Link>
+                          </div>
+                        </div>
                       </div>
-                      <div className="card-content">
-                        <Link to={`/products/${product.id}`} key={product.id}>
-                          <span className="card-title">{product.name}</span>
-                          <p>{`$${product.price}`}</p>
-                          <p>{product.color}</p>
-                          <p>{`${product.season} Collection`}</p>
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                )
-              })
-                : null
-              }
+                    )
+                  })
+                : null}
             </div>
           </div>
         </div>
@@ -209,8 +217,15 @@ const mapState = state => {
   }
 }
 
+const mapDispatch = dispatch => {
+  return {
+    addItem: itemId => {
+      dispatch(addItemThunk(itemId))
+    },
+  }
+}
 
 export default connect(
   mapState,
-  null
+  mapDispatch
 )(AllProducts)
