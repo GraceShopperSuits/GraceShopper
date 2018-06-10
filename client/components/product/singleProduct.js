@@ -93,7 +93,9 @@ class SingleProduct extends Component {
                   <div>There are no reviews yet! leave the first one?</div>
                 )}
                 <Link to={`/products/${singleProduct.id}/review`}>
-                  <button type="button">Add Review!</button>
+                  <button type="button" className="btn">
+                    Add Review!
+                  </button>
                 </Link>
               </div>
             </div>
