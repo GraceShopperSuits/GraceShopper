@@ -42,3 +42,7 @@ form div {
 p {
   word-wrap: break-word;
 }
+
+.carousel-image {
+  height: 600px;
+}

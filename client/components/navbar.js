@@ -50,7 +50,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
             <li>
               <Link to="/products">All Products</Link>
             </li>
-            <li>
+            <li id="nav-cart">
               <Link to="/cart">
                 <i className="material-icons">shopping_cart</i>
               </Link>
