@@ -183,7 +183,7 @@ class AllProducts extends Component {
                           <div className="card-image">
                             <img className="responsive-img" src={product.imageUrl} />
                             <a
-                              className="btn-floating halfway-fab waves-effect waves-light blue-grey darken-4"
+                              className="btn-floating halfway-fab waves-effect waves-light black"
                               onClick={() => this.props.addItem(product.id)}
                             >
                               <i className="material-icons">add_shopping_cart</i>

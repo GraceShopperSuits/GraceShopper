@@ -35,3 +35,7 @@ form div {
   margin: none;
   padding: none;
 }
+
+.card {
+  height: 600px;
+}
