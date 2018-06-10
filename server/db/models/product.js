@@ -15,7 +15,10 @@ const Product = db.define('product', {
   },
   imageUrl: {
     type: Sequelize.STRING,
-    defaultValue: 'http://dummyimage.com/250x250.jpg/5fa2dd/ffffff',
+    defaultValue: 'http://pngimg.com/uploads/suit/suit_PNG8121.png',
+    validate: {
+      isUrl: true,
+    },
   },
   season: {
     type: Sequelize.ENUM('Summer', 'Spring', 'Autumn', 'Winter'),
