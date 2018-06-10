@@ -73,15 +73,23 @@ class SingleProduct extends Component {
                 {user.admin ? <Link to={`/products/${singleProduct.id}/edit`}>Edit</Link> : null}
 
                 {reviews.length ? (
-                  reviews.map(review => {
-                    return (
-                      <div key={review.id}>
-                        <h3>Review By {review.user.email}</h3>
-                        <p>{review.text}</p>
-                        <h3>RATING:{review.rating}</h3>
-                      </div>
-                    )
-                  })
+                  <div className="row">
+                    <h5>Reviews</h5>
+                    {reviews.map(review => {
+                      return (
+                        <div key={review.id}>
+                          <div className="col s9">
+                            <p>
+                              <strong>{review.user.email}</strong> - {review.text}
+                            </p>
+                          </div>
+                          <div className="col s3">
+                            <p>Rating: {review.rating}</p>
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
                 ) : (
                   <div>There are no reviews yet! leave the first one?</div>
                 )}

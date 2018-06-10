@@ -39,3 +39,6 @@ form div {
 .card {
   height: 600px;
 }
+p {
+  word-wrap: break-word;
+}
