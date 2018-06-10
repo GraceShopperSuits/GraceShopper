@@ -26,22 +26,34 @@ class Home extends Component {
             Shop Now
           </Link>
         </div>
-        <div className="carousel-item white-text" href="#one!">
+        <div className="carousel-item white-text">
+          <img
+            className="responsive-img carousel-image"
+            src="https://images.pexels.com/photos/1143793/pexels-photo-1143793.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+          />
+        </div>
+        <div className="carousel-item white-text">
           <img
             className="responsive-img carousel-image"
             src="https://images.pexels.com/photos/999267/pexels-photo-999267.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
           />
         </div>
-        <div className="carousel-item white-text" href="#two!">
+        <div className="carousel-item white-text">
+          <img
+            className="responsive-img carousel-image"
+            src="https://images.pexels.com/photos/450212/pexels-photo-450212.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+          />
+        </div>
+        <div className="carousel-item white-text">
           <img
             className="responsive-img carousel-image"
             src="https://images.pexels.com/photos/1093926/pexels-photo-1093926.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
           />
         </div>
-        <div className="carousel-item white-text" href="#three!">
+        <div className="carousel-item white-text">
           <img
             className="responsive-img carousel-image"
-            src="https://images.pexels.com/photos/1143793/pexels-photo-1143793.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+            src="https://images.pexels.com/photos/447189/pexels-photo-447189.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
           />
         </div>
       </div>
