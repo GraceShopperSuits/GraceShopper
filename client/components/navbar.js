@@ -37,7 +37,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
       ) : (
         <div className="nav-wrapper">
           {/* The navbar will show these links before you log in */}
-          <Link id="logoText" to="/products">
+          <Link id="logoText" to="/">
             {' '}
             S
             <img
