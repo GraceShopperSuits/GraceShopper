@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { addItemThunk } from '../../store'
-import { Button } from 'reactstrap'
 
 class SingleProduct extends Component {
   constructor(props) {
@@ -94,7 +93,7 @@ class SingleProduct extends Component {
                   <div>There are no reviews yet! leave the first one?</div>
                 )}
                 <Link to={`/products/${singleProduct.id}/review`}>
-                  <Button>Add Review!</Button>
+                  <button type="button">Add Review!</button>
                 </Link>
               </div>
             </div>
