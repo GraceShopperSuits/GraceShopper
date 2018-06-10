@@ -43,6 +43,7 @@ p {
   word-wrap: break-word;
 }
 
-.carousel-image {
-  height: 600px;
+#carousel {
+  overflow: hidden !important;
+  height: 650px !important;
 }
