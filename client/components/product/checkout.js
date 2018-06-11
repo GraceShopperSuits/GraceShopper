@@ -4,7 +4,7 @@ import { addItemThunk, removeItemThunk, clearCartItems, createOrder } from '../.
 import { Table, Button } from 'reactstrap'
 import { Link } from 'react-router-dom'
 
-class Cart extends Component {
+class Checkout extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -21,7 +21,7 @@ class Cart extends Component {
     //display modal telling user to sign in.
   }
   render() {
-    console.log('hiii', this.props)
+    console.log('were in checkout', this.props)
     const cart = this.props.cart
     const products = this.props.products
     const cartArr = []
@@ -58,36 +58,20 @@ class Cart extends Component {
                         <td>{item.name}</td>
                         <td>{item.saleQuantity}</td>
                         <td>{`$${item.price * item.saleQuantity}`}</td>
-                        <td>
-                          <Button
-                            onClick={() => {
-                              this.props.addItem(item.id)
-                              total += item.price
-                            }}
-                          >
-                            +
-                          </Button>
-                        </td>
-                        <td>
-                          <Button onClick={() => this.props.removeItem(item.id)}>-</Button>
-                        </td>
                       </tr>
                     )
                   })
                 : null}
               <tr>
-                <td>
-                  <Button onClick={this.props.clearCart}>Clear Cart</Button>
-                </td>
+                <td />
                 <td />
                 <td>{`Total:  $${total}`}</td>
               </tr>
             </tbody>
           </Table>
-          <Link to="/checkout">
-            {' '}
-            <Button onClick={this.handleCheckout}>Check out</Button>{' '}
-          </Link>
+          <button type="button" className="btn">
+            Confirm order
+          </button>
         </div>
       </div>
     )
@@ -122,4 +106,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Cart)
+)(Checkout)
