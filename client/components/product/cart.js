@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addItemThunk, removeItemThunk, clearCartItems } from '../../store'
+import { addItemThunk, removeItemThunk, clearCartItems, createOrder } from '../../store'
 import { Table, Button } from 'reactstrap'
 
 class Cart extends Component {
@@ -9,8 +9,16 @@ class Cart extends Component {
     this.state = {
       products: [],
     }
+    this.handleCheckout = this.handleCheckout.bind(this)
   }
-
+  handleCheckout() {
+    if (this.props.user.id) {
+      this.props.createOrder(this.props.cart)
+    } else {
+      return 'nothing'
+    }
+    //display modal telling user to sign in.
+  }
   render() {
     console.log('hiii', this.props)
     const cart = this.props.cart
@@ -75,6 +83,7 @@ class Cart extends Component {
               </tr>
             </tbody>
           </Table>
+          <Button onClick={this.handleCheckout}>Check out</Button>
         </div>
       </div>
     )
@@ -85,6 +94,7 @@ export const mapStateToProps = function(state) {
   return {
     cart: state.cart,
     products: state.product,
+    user: state.user,
   }
 }
 
@@ -98,6 +108,9 @@ const mapDispatchToProps = dispatch => {
     },
     clearCart: () => {
       dispatch(clearCartItems())
+    },
+    createOrder: orderInformation => {
+      dispatch(createOrder(orderInformation))
     },
   }
 }
