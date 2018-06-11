@@ -26,10 +26,6 @@ class AllProducts extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  // componentDidMount() {
-  //   Materialize.toast({ html: toast })
-  // }
-
   toggleCheckboxChange(event) {
     this.setState({ [event.target.name]: !this.state[event.target.name] })
   }
