@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { addItemThunk } from '../../store'
+import { addItemThunk, removeItemThunk } from '../../store'
+
+import Materialize from '../../../materialize/materialize.min'
 
 class AllProducts extends Component {
   constructor(props) {
@@ -23,6 +25,7 @@ class AllProducts extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
+
   toggleCheckboxChange(event) {
     this.setState({ [event.target.name]: !this.state[event.target.name] })
   }
@@ -88,6 +91,10 @@ class AllProducts extends Component {
     products = filteredColors
     // season=Winter&season=Summer&color=Black
     // seperating products by type
+
+    // let toast =
+    //   '<span>Added to cart!</span><button class="btn-flat toast-action" onClick={this.props.removeItem(product.id)}>Undo</button>'
+
     return (
       <div className="Landing">
         {user.admin ? (
@@ -198,13 +205,19 @@ class AllProducts extends Component {
               {products.length
                 ? products.map(product => {
                     return (
-                      <div className="col s3" key={product.id}>
+                      <div className="col s3 card-parent" key={product.id}>
                         <div className="card">
                           <div className="card-image">
                             <img className="responsive-img" src={product.imageUrl} />
                             <a
                               className="btn-floating halfway-fab waves-effect waves-light black"
-                              onClick={() => this.props.addItem(product.id)}
+                              onClick={() => {
+                                this.props.addItem(product.id)
+                                // toast here
+                                Materialize.toast({
+                                  html: '<span>Added to cart!</span>',
+                                })
+                              }}
                             >
                               <i className="material-icons">add_shopping_cart</i>
                             </a>
@@ -241,6 +254,9 @@ const mapDispatch = dispatch => {
   return {
     addItem: itemId => {
       dispatch(addItemThunk(itemId))
+    },
+    removeItem: itemId => {
+      dispatch(removeItemThunk(itemId))
     },
   }
 }
