@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { addItemThunk } from '../../store'
+import Materialize from '../../../materialize/materialize.min'
 
 class SingleProduct extends Component {
   constructor(props) {
@@ -64,7 +65,12 @@ class SingleProduct extends Component {
                 </div>
                 <button
                   className="waves-effect waves-light btn"
-                  onClick={() => this.handleAddItem(singleProduct.id)}
+                  onClick={() => {
+                    this.handleAddItem(singleProduct.id)
+                    Materialize.toast({
+                      html: '<span>Added to cart!</span>',
+                    })
+                  }}
                 >
                   <i className="material-icons center">add_shopping_cart</i>
                 </button>
