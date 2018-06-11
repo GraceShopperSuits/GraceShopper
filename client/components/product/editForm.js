@@ -24,23 +24,18 @@ class EditForm extends Component {
   // }
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value })
-    // console.log(`we're typing ${event.target.name} ${event.target.value}`)
   }
 
   handleToggle(event) {
     this.setState({ [event.target.name]: event.target.value })
-    // console.log(event.target.value, event.target.name)
   }
 
   render() {
     const id = this.props.match.params.productId
-    // console.log('props', this.props)
-    // console.log('ID', id)
     const product =
       this.props.products.filter(check => {
         return check.id === +id
       })[0] || {}
-    // console.log('product', product)
     return (
       <div>
         <h1>Editing {product.name}</h1>
@@ -108,7 +103,7 @@ class EditForm extends Component {
 
           <label>
             Season
-            <select name="season" value={this.state.season} onChange={this.handleToggle}>
+            <select className="browser-default" name="season" value={this.state.season} onChange={this.handleToggle}>
               <option>Please select</option>
               <option>Fall</option>
               <option>Summer</option>
@@ -116,9 +111,10 @@ class EditForm extends Component {
               <option>Spring</option>
             </select>
           </label>
+
           <label>
             Color
-            <select name="color" value={this.state.color} onChange={this.handleToggle}>
+            <select className="browser-default" name="color" value={this.state.color} onChange={this.handleToggle}>
               <option>Please select</option>
               <option>Black</option>
               <option>Navy</option>
@@ -130,7 +126,7 @@ class EditForm extends Component {
           </label>
           <label>
             Size
-            <select name="size" value={this.state.size} onChange={this.handleToggle}>
+            <select className="browser-default" name="size" value={this.state.size} onChange={this.handleToggle}>
               <option>Please select</option>
               <option>36</option>
               <option>38</option>
@@ -161,7 +157,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         ...this.state,
       }
       const id = this.props.match.params.productId
-      // console.log('mapdispatchprops', this.props.match.params.productId)
       dispatch(updateProduct(product, id))
 
       this.setState({

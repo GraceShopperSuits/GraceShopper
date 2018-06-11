@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createProduct } from '../../store/product'
-//import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap'
 
 class AddForm extends Component {
   constructor(props) {
@@ -23,12 +22,10 @@ class AddForm extends Component {
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value })
-    console.log(`we're typing ${event.target.name} ${event.target.value}`)
   }
 
   handleToggle(event) {
     this.setState({ [event.target.name]: event.target.value })
-    console.log(event.target.value, event.target.name)
   }
 
   // handleSubmit(event) {
@@ -153,7 +150,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       const product = {
         ...this.state,
       }
-      console.log('selected', product)
       dispatch(createProduct(product))
       this.setState({
         name: '',

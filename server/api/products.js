@@ -33,25 +33,34 @@ router.get('/:productId', (req, res, next) => {
 //POST route for '/api/products' -- Allows admin to add a product
 
 router.post('/', async (req, res, next) => {
-  let product = await Product.create({
-    name: req.body.name,
-    color: req.body.color,
-    description: req.body.description,
-    season: req.body.season,
-    price: +req.body.price,
-    imageUrl: req.body.imageUrl,
-    size: req.body.size,
-  })
-  if (!product) res.sendStatus(400)
-  res.json(product)
+  try {
+    let product = await Product.create({
+      name: req.body.name,
+      color: req.body.color,
+      description: req.body.description,
+      season: req.body.season,
+      price: +req.body.price,
+      imageUrl: req.body.imageUrl,
+      size: req.body.size,
+    })
+    if (!product) res.sendStatus(400)
+    res.json(product)
+  } catch (err) {
+    next(err)
+  }
 })
 
 router.put('/:id', async (req, res, next) => {
-  const id = +req.params.id
-  let product = await Product.findById(id)
-  if (!product) res.sendStatus(404)
-  await product.update(req.body)
-  res.status(201).json(product)
+  try {
+    const id = +req.params.id
+    let product = await Product.findById(id)
+    if (!product) res.sendStatus(404)
+    await product.update(req.body)
+    res.status(201).json(product)
+  }
+  catch (err) {
+    next(err)
+  }
 })
 
 // router.post('/', (req, res, next) => {
