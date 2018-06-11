@@ -80,6 +80,7 @@ const mapDispatchToProps = dispatch => {
         userId: +this.props.user.id,
         productId: +this.props.match.params.productId,
       }
+      console.log('review', review)
       dispatch(createReview(review))
       this.setState({
         text: '',

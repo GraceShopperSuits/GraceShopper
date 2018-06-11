@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createProduct } from '../../store/product'
-//import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap'
 
 class AddForm extends Component {
   constructor(props) {
