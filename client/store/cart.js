@@ -57,10 +57,7 @@ export default reducer
 export const createOrder = orderInformation => dispatch => {
   return axios
     .post(`/api/cart/`, orderInformation)
-    .then(res => res.data)
-    .then(() => {
-      dispatch(clearCartItems())
-    })
+    .then(res => console.log(res.data))
     .catch(error => {
       console.error(error)
     })

@@ -13,6 +13,7 @@ import {
   Cart,
   ReviewForm,
   Home,
+  Checkout,
 } from './components'
 import { me } from './store'
 
@@ -32,6 +33,7 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/" component={Home} />
         <Route exact path="/cart" component={Cart} />
+        <Route exact path="/checkout" component={Checkout} />
         <Route exact path="/products/add" component={AddForm} />
         <Route exact path="/products/:productId/edit" component={EditForm} />
         <Route exact path="/products/:productId" component={SingleProduct} />
