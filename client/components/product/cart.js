@@ -31,48 +31,51 @@ class Cart extends Component {
     })
 
     return (
-      <div>
-        <Table bordered>
-          <thead>
-            <tr>
-              <th>Product Name</th>
-              <th>Quantity</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {cartArr.length
-              ? cartArr.map(item => {
-                  return (
-                    <tr key={item.name}>
-                      <td>{item.name}</td>
-                      <td>{item.saleQuantity}</td>
-                      <td>{item.price * item.saleQuantity}</td>
-                      <td>
-                        <Button
-                          onClick={() => {
-                            this.props.addItem(item.id)
-                            total += item.price
-                          }}
-                        >
-                          +
-                        </Button>
-                      </td>
-                      <td>
-                        <Button onClick={() => this.props.removeItem(item.id)}>-</Button>
-                      </td>
-                    </tr>
-                  )
-                })
-              : null}
-            <tr>
-              <td />
-              <td />
-              <td>{`Total:  $${total}`}</td>
-            </tr>
-          </tbody>
-        </Table>
-        <Button onClick={this.props.clearCart}>Clear Cart</Button>
+      <div className="row">
+        <div className="col s10">
+          <Table bordered>
+            <thead>
+              <tr>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cartArr.length
+                ? cartArr.map(item => {
+                    return (
+                      <tr key={item.name}>
+                        <td>{item.name}</td>
+                        <td>{item.saleQuantity}</td>
+                        <td>{`$${item.price * item.saleQuantity}`}</td>
+                        <td>
+                          <Button
+                            onClick={() => {
+                              this.props.addItem(item.id)
+                              total += item.price
+                            }}
+                          >
+                            +
+                          </Button>
+                        </td>
+                        <td>
+                          <Button onClick={() => this.props.removeItem(item.id)}>-</Button>
+                        </td>
+                      </tr>
+                    )
+                  })
+                : null}
+              <tr>
+                <td>
+                  <Button onClick={this.props.clearCart}>Clear Cart</Button>
+                </td>
+                <td />
+                <td>{`Total:  $${total}`}</td>
+              </tr>
+            </tbody>
+          </Table>
+        </div>
       </div>
     )
   }

@@ -35,3 +35,15 @@ form div {
   margin: none;
   padding: none;
 }
+
+.card {
+  height: 600px;
+}
+p {
+  word-wrap: break-word;
+}
+
+#carousel {
+  overflow: hidden !important;
+  height: 650px !important;
+}
