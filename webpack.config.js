@@ -18,6 +18,10 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
       },
+      {
+        test: /\.(png|jpg|jpeg)$/,
+        loader: 'url-loader?limit=8192',
+      },
     ],
   },
 }

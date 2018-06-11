@@ -47,25 +47,45 @@ class AllProducts extends Component {
           product.name.toLowerCase().includes(this.state.search.toLowerCase())
         )
       : products
-    products = this.state.spring
-      ? products.filter(product => product.season === 'Spring')
-      : products
-    products = this.state.summer
-      ? products.filter(product => product.season === 'Summer')
-      : products
-    products = this.state.winter
-      ? products.filter(product => product.season === 'Winter')
-      : products
-    products = this.state.autumn
-      ? products.filter(product => product.season === 'Autumn')
-      : products
-    products = this.state.pink ? products.filter(product => product.color === 'Pink') : products
-    products = this.state.navy ? products.filter(product => product.color === 'Navy') : products
-    products = this.state.black ? products.filter(product => product.color === 'Black') : products
-    products = this.state.white ? products.filter(product => product.color === 'White') : products
-    products = this.state.brown ? products.filter(product => product.color === 'Brown') : products
-    products = this.state.maroon ? products.filter(product => product.color === 'Maroon') : products
-
+    let filteredSeasons = []
+    filteredSeasons.push(
+      ...(this.state.spring ? products.filter(product => product.season === 'Spring') : [])
+    )
+    filteredSeasons.push(
+      ...(this.state.summer ? products.filter(product => product.season === 'Summer') : [])
+    )
+    filteredSeasons.push(
+      ...(this.state.autumn ? products.filter(product => product.season === 'Autumn') : [])
+    )
+    filteredSeasons.push(
+      ...(this.state.winter ? products.filter(product => product.season === 'Winter') : [])
+    )
+    if (!filteredSeasons.length) {
+      filteredSeasons = products
+    }
+    let filteredColors = []
+    filteredColors.push(
+      ...(this.state.pink ? filteredSeasons.filter(product => product.color === 'Pink') : [])
+    )
+    filteredColors.push(
+      ...(this.state.navy ? filteredSeasons.filter(product => product.color === 'Navy') : [])
+    )
+    filteredColors.push(
+      ...(this.state.black ? filteredSeasons.filter(product => product.color === 'Black') : [])
+    )
+    filteredColors.push(
+      ...(this.state.white ? filteredSeasons.filter(product => product.color === 'White') : [])
+    )
+    filteredColors.push(
+      ...(this.state.brown ? filteredSeasons.filter(product => product.color === 'Brown') : [])
+    )
+    filteredColors.push(
+      ...(this.state.maroon ? filteredSeasons.filter(product => product.color === 'Maroon') : [])
+    )
+    if (!filteredColors.length) {
+      filteredColors = filteredSeasons
+    }
+    products = filteredColors
     // season=Winter&season=Summer&color=Black
     // seperating products by type
     return (
@@ -183,7 +203,7 @@ class AllProducts extends Component {
                           <div className="card-image">
                             <img className="responsive-img" src={product.imageUrl} />
                             <a
-                              className="btn-floating halfway-fab waves-effect waves-light blue-grey darken-4"
+                              className="btn-floating halfway-fab waves-effect waves-light black"
                               onClick={() => this.props.addItem(product.id)}
                             >
                               <i className="material-icons">add_shopping_cart</i>
