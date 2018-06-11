@@ -30,11 +30,11 @@ class AllProducts extends Component {
     this.setState({ [event.target.name]: !this.state[event.target.name] })
   }
 
-  handleChange = function(event) {
+  handleChange = function (event) {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  handleSubmit = function(event) {
+  handleSubmit = function (event) {
     event.preventDefault()
     this.setState({
       search: event.target.search.value,
@@ -47,8 +47,8 @@ class AllProducts extends Component {
     const user = this.props.user || {}
     products = this.state.search
       ? products.filter(product =>
-          product.name.toLowerCase().includes(this.state.search.toLowerCase())
-        )
+        product.name.toLowerCase().includes(this.state.search.toLowerCase())
+      )
       : products
     let filteredSeasons = []
     filteredSeasons.push(
@@ -204,36 +204,36 @@ class AllProducts extends Component {
             <div className="row">
               {products.length
                 ? products.map(product => {
-                    return (
-                      <div className="col s3 card-parent" key={product.id}>
-                        <div className="card">
-                          <div className="card-image">
-                            <img className="responsive-img" src={product.imageUrl} />
-                            <a
-                              className="btn-floating halfway-fab waves-effect waves-light black"
-                              onClick={() => {
-                                this.props.addItem(product.id)
-                                // toast here
-                                Materialize.toast({
-                                  html: '<span>Added to cart!</span>',
-                                })
-                              }}
-                            >
-                              <i className="material-icons">add_shopping_cart</i>
-                            </a>
-                          </div>
-                          <div className="card-content">
-                            <Link to={`/products/${product.id}`} key={product.id}>
-                              <span className="card-title">{product.name}</span>
-                              <p>{`$${product.price}`}</p>
-                              <p>{product.color}</p>
-                              <p>{`${product.season} Collection`}</p>
-                            </Link>
-                          </div>
+                  return (
+                    <div className="col s3 card-parent" key={product.id}>
+                      <div className="card">
+                        <div className="card-image">
+                          <img className="responsive-img" src={product.imageUrl} />
+                          <a
+                            className="btn-floating halfway-fab waves-effect waves-light black"
+                            onClick={() => {
+                              this.props.addItem(product.id)
+                              // toast here
+                              Materialize.toast({
+                                html: '<span>Added to cart!</span>',
+                              })
+                            }}
+                          >
+                            <i className="material-icons">add_shopping_cart</i>
+                          </a>
+                        </div>
+                        <div className="card-content">
+                          <Link to={`/products/${product.id}`} key={product.id}>
+                            <span className="card-title">{product.name}</span>
+                            <p>{`$${product.price}`}</p>
+                            <p>{product.color}</p>
+                            <p>{`${product.season} Collection`}</p>
+                          </Link>
                         </div>
                       </div>
-                    )
-                  })
+                    </div>
+                  )
+                })
                 : null}
             </div>
           </div>

@@ -44,6 +44,11 @@ p {
   word-wrap: break-word;
 }
 
+select{
+  width: 150px;
+  text-overflow: ellipsis;
+}
+
 #carousel {
   overflow: hidden !important;
   height: 650px !important;
