@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { addItemThunk, removeItemThunk, clearCartItems, createOrder } from '../../store'
 import { Table, Button } from 'reactstrap'
 import { Link } from 'react-router-dom'
+import Materialize from '../../../materialize/materialize.min'
 
 class Cart extends Component {
   constructor(props) {
@@ -83,10 +84,22 @@ class Cart extends Component {
               </tr>
             </tbody>
           </Table>
-          <Link to="/checkout">
-            {' '}
-            <Button onClick={this.handleCheckout}>Check out</Button>{' '}
-          </Link>
+          {this.props.user.id ? (
+            <Link to="/checkout">
+              {' '}
+              <Button onClick={this.handleCheckout}>Check out</Button>{' '}
+            </Link>
+          ) : (
+            <Button
+              onClick={() => {
+                Materialize.toast({
+                  html: '<span>Please Sign/Log in!</span>',
+                })
+              }}
+            >
+              Check snout
+            </Button>
+          )}
         </div>
       </div>
     )

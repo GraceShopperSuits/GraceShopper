@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { addItemThunk, removeItemThunk, clearCartItems, createOrder } from '../../store'
 import { Table, Button } from 'reactstrap'
 import { Link } from 'react-router-dom'
+import { Stripe } from '../index'
 
 class Checkout extends Component {
   constructor(props) {
@@ -68,9 +69,7 @@ class Checkout extends Component {
               </tr>
             </tbody>
           </Table>
-          <button type="button" className="btn">
-            Confirm order
-          </button>
+          <Stripe email={this.props.user.email} amount={total} history={this.props.history} />
         </div>
       </div>
     )
