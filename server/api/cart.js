@@ -19,13 +19,15 @@ router.post('/', async (req, res, next) => {
   const cartArr = Object.keys(req.body)
 
   //map the array to convert keys to an instance of that product
-  cartArr.map(async eachProduct => {
-    const product = await Product.findById(eachProduct)
-    return product
-  })
+  const cartItems = await Promise.all(
+    cartArr.map(eachProduct => {
+      const product = Product.findById(Number(eachProduct))
+      return product
+    })
+  )
 
   //add products to associated order
-  console.log('order', order)
-  await order.addProduct(1)
+  console.log('order', cartItems)
+  await order[0].addProducts(cartItems)
   res.status(201).send('Order created')
 })
