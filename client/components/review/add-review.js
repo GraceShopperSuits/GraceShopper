@@ -16,11 +16,9 @@ class ReviewForm extends Component {
   }
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value })
-    // console.log(`we're typing ${event.target.name} ${event.target.value}`)
   }
   handleToggle(event) {
     this.setState({ [event.target.name]: event.target.value })
-    // console.log(event.target.value, event.target.name)
   }
   render() {
     const product =
@@ -80,7 +78,6 @@ const mapDispatchToProps = dispatch => {
         userId: +this.props.user.id,
         productId: +this.props.match.params.productId,
       }
-      console.log('review', review)
       dispatch(createReview(review))
       this.setState({
         text: '',

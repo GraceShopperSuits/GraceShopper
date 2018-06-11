@@ -56,6 +56,5 @@ export const updateProduct = (product, id) => dispatch => {
   axios
     .put(`/api/products/${id}`)
     .then(res => dispatch(editProduct(res.data)))
-  console.log(res)
     .catch(error => console.error("could not update", error))
 }
