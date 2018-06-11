@@ -21,7 +21,7 @@ class Cart extends Component {
     //display modal telling user to sign in.
   }
   render() {
-    console.log('hiii', this.props)
+    console.log('hiii', this.props) //hiiii
     const cart = this.props.cart
     const products = this.props.products
     const cartArr = []
@@ -39,6 +39,7 @@ class Cart extends Component {
       total += item.price * item.saleQuantity
     })
 
+    //outermost div is cart.
     return (
       <div className="row">
         <div className="col s10">
@@ -53,27 +54,27 @@ class Cart extends Component {
             <tbody>
               {cartArr.length
                 ? cartArr.map(item => {
-                    return (
-                      <tr key={item.name}>
-                        <td>{item.name}</td>
-                        <td>{item.saleQuantity}</td>
-                        <td>{`$${item.price * item.saleQuantity}`}</td>
-                        <td>
-                          <Button
-                            onClick={() => {
-                              this.props.addItem(item.id)
-                              total += item.price
-                            }}
-                          >
-                            +
+                  return (
+                    <tr key={item.name}>
+                      <td>{item.name}</td>
+                      <td>{item.saleQuantity}</td>
+                      <td>{`$${item.price * item.saleQuantity}`}</td>
+                      <td>
+                        <Button
+                          onClick={() => {
+                            this.props.addItem(item.id)
+                            total += item.price
+                          }}
+                        >
+                          +
                           </Button>
-                        </td>
-                        <td>
-                          <Button onClick={() => this.props.removeItem(item.id)}>-</Button>
-                        </td>
-                      </tr>
-                    )
-                  })
+                      </td>
+                      <td>
+                        <Button onClick={() => this.props.removeItem(item.id)}>-</Button>
+                      </td>
+                    </tr>
+                  )
+                })
                 : null}
               <tr>
                 <td>
@@ -94,7 +95,7 @@ class Cart extends Component {
   }
 }
 
-export const mapStateToProps = function(state) {
+export const mapStateToProps = function (state) {
   return {
     cart: state.cart,
     products: state.product,

@@ -51,6 +51,7 @@ class AllProducts extends Component {
       )
       : products
     let filteredSeasons = []
+    // make a single function who's responsibility is to do this and put all of the filters together to at the bare minimum do this in one pass.
     filteredSeasons.push(
       ...(this.state.spring ? products.filter(product => product.season === 'Spring') : [])
     )

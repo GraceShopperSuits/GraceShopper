@@ -5,6 +5,7 @@ module.exports = router
 //GET route for '/api/products' -- serves all products
 router.get('/', (req, res, next) => {
   let whereObj = {}
+  //CG: compress these if -statements
   if (req.query && req.query.color) {
     whereObj.color = req.query.color
   }
@@ -14,6 +15,7 @@ router.get('/', (req, res, next) => {
   if (req.query && req.query.size) {
     whereObj.size = req.query.size
   }
+  //CG: This is dangerous. 
   Product.findAll({ include: [{ all: true, nested: true }] })
     .then(products => res.json(products))
     .catch(next)
@@ -25,6 +27,7 @@ router.get('/:productId', (req, res, next) => {
     where: {
       id: req.params.productId,
     },
+    //CG: this is where I would include reviews
   })
     .then(product => res.json(product))
     .catch(next)
@@ -33,24 +36,29 @@ router.get('/:productId', (req, res, next) => {
 //POST route for '/api/products' -- Allows admin to add a product
 
 router.post('/', async (req, res, next) => {
-  let product = await Product.create({
-    name: req.body.name,
-    color: req.body.color,
-    description: req.body.description,
-    season: req.body.season,
-    price: +req.body.price,
-    imageUrl: req.body.imageUrl,
-    size: req.body.size,
-  })
-  if (!product) res.sendStatus(400)
-  res.json(product)
+  try {
+    let product = await Product.create({
+      name: req.body.name,
+      color: req.body.color,
+      description: req.body.description,
+      season: req.body.season,
+      price: +req.body.price,
+      imageUrl: req.body.imageUrl,
+      size: req.body.size,
+    })
+    if (!product) res.sendStatus(400) //CG: idt this will execute
+    res.json(product)
+  } catch (err) {
+    next(err);
+  }
 })
 
 router.put('/:id', async (req, res, next) => {
+  //CG: need try catch 
   const id = +req.params.id
   let product = await Product.findById(id)
   if (!product) res.sendStatus(404)
-  await product.update(req.body)
+  product = await product.update(req.body)
   res.status(201).json(product)
 })
 

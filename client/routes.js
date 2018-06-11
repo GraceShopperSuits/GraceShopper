@@ -34,6 +34,7 @@ class Routes extends Component {
         <Route exact path="/" component={Home} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/checkout" component={Checkout} />
+        {/* Maybe bucket these routes into admin routes here to save you the trouble later. */}
         <Route exact path="/products/add" component={AddForm} />
         <Route exact path="/products/:productId/edit" component={EditForm} />
         <Route exact path="/products/:productId" component={SingleProduct} />

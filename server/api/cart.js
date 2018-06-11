@@ -2,13 +2,18 @@ const router = require('express').Router()
 const { Product, User, Order } = require('../db/models')
 module.exports = router
 
+/// /api/users/:userId/orders --- /cart OR ?cart=true
+// /api/users/:userId/cart -- post
 // '/api/cart'
+
+//Don't forget try catch adn don't forget security. 
 router.post('/', async (req, res, next) => {
   const userId = req.user.id
   console.log('body', req.body)
   //get user id from req.user object
 
-  //find an open order that is pending or create a new one
+  //find an open order that is pending or create a new one'
+  // CG: destructure here, yes you can destructure arrays :O
   const order = await Order.findOrCreate({
     where: {
       userId,
@@ -27,7 +32,7 @@ router.post('/', async (req, res, next) => {
   )
 
   //add products to associated order
-  console.log('order', cartItems)
+  console.log('order', cartItems) // CG: no
   await order[0].addProducts(cartItems)
   res.status(201).send('Order created')
 })

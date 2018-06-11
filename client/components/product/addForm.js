@@ -22,7 +22,7 @@ class AddForm extends Component {
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value })
-    console.log(`we're typing ${event.target.name} ${event.target.value}`)
+    console.log(`we're typing ${event.target.name} ${event.target.value}`) //CG: Non-commited console.log
   }
 
   handleToggle(event) {
@@ -34,11 +34,26 @@ class AddForm extends Component {
 
   // }
 
+  /*
+
+    .product-form {
+
+      &-label {
+
+      }
+    }
+
+    .product-form 
+    .product-form-label 
+
+
+  */
+
   render() {
     return (
-      <div>
+      <div className="product-form">
         <form onSubmit={this.handleSubmit}>
-          <label>
+          <label className="product-form-label">
             Name
               <input
               type="text"
@@ -141,10 +156,13 @@ class AddForm extends Component {
   }
 }
 
+//remove please
 // export const mapStateToProps = function(state) {
 //   return {}
 // }
 
+
+//Make this as an instance method on the component.
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     handleSubmit(event) {
@@ -152,7 +170,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       const product = {
         ...this.state,
       }
-      console.log('selected', product)
+      console.log('selected', product) //no
       dispatch(createProduct(product))
       this.setState({
         name: '',

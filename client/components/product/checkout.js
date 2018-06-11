@@ -21,7 +21,7 @@ class Checkout extends Component {
     //display modal telling user to sign in.
   }
   render() {
-    console.log('were in checkout', this.props)
+    console.log('were in checkout', this.props) //no stop with the console.logs
     const cart = this.props.cart
     const products = this.props.products
     const cartArr = []
@@ -53,14 +53,14 @@ class Checkout extends Component {
             <tbody>
               {cartArr.length
                 ? cartArr.map(item => {
-                    return (
-                      <tr key={item.name}>
-                        <td>{item.name}</td>
-                        <td>{item.saleQuantity}</td>
-                        <td>{`$${item.price * item.saleQuantity}`}</td>
-                      </tr>
-                    )
-                  })
+                  return (
+                    <tr key={item.name}>
+                      <td>{item.name}</td>
+                      <td>{item.saleQuantity}</td>
+                      <td>{`$${item.price * item.saleQuantity}`}</td>
+                    </tr>
+                  )
+                })
                 : null}
               <tr>
                 <td />
@@ -78,7 +78,7 @@ class Checkout extends Component {
   }
 }
 
-export const mapStateToProps = function(state) {
+export const mapStateToProps = function (state) {
   return {
     cart: state.cart,
     products: state.product,

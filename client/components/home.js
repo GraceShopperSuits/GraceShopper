@@ -8,7 +8,7 @@ class Home extends Component {
     super(props)
   }
   componentDidMount() {
-    var elems = document.querySelectorAll('.carousel')
+    var elems = document.querySelectorAll('.carousel') //what's this about? avoid copeting for dom. 
     let instance = Materialize.Carousel.init(elems, {
       fullWidth: true,
       indicators: true,

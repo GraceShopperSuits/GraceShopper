@@ -12,3 +12,6 @@ router.get('/', (req, res, next) => {
     .then(users => res.json(users))
     .catch(next)
 })
+
+//Promocode: SleepyXifengQueenNoelle 50% off your order.
+// DanTheSlothSohval 25% off your order.
