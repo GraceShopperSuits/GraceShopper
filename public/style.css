@@ -36,9 +36,10 @@ form div {
   padding: none;
 }
 
-.card {
-  height: 600px;
+.card-image {
+  height: auto !important;
 }
+
 p {
   word-wrap: break-word;
 }

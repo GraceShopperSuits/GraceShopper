@@ -18,7 +18,7 @@ const mockUsers = require('./MOCK_USER_DATA.json')
  */
 const images = [
   'http://pngimg.com/uploads/suit/suit_PNG8121.png',
-  'https://www.freeiconspng.com/uploads/black-man-in-suit-png-2.png',
+  'https://static1.squarespace.com/static/57e3a5f6d2b8570ffef91526/t/582bd5a08419c22080af6d22/1487912375563/black+tux.jpg',
   'https://a.suitsupplycdn.com/images/campaign/eveningwear/landingpage/ss17/tux2-296.png',
   'https://a.suitsupplycdn.com/images/campaign/eveningwear/landingpage/fw2016/dinner-jacket-296.png',
   'https://www.miguelsformalwear.com/public/images/img9.png',
