@@ -16,6 +16,11 @@ nav a {
   margin: 0 1rem;
 }
 
+select{
+  width: 150px;
+  text-overflow: ellipsis;
+}
+
 .nav-wrapper {
   /* background-color: #37474f; */
   background-color: black;
