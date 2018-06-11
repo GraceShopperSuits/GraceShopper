@@ -16,9 +16,11 @@ const reducer = (state = [], action) => {
 }
 export default reducer
 
-export const createReview = review => dispatch => {
+export const createReview = (review, history) => dispatch => {
   axios
     .post('/api/reviews', review)
-    .then(res => dispatch(addReview(res.data)))
+    .then(res => { console.log('review', res.data) }, dispatch(addReview(res.data)))
     .catch(err => console.error('could not review ', err))
+
+  // history.push(`/products/${review.userId}`)
 }

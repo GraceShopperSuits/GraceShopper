@@ -8,7 +8,7 @@ class ReviewForm extends Component {
     super(props)
     this.state = {
       text: '',
-      rating: '5',
+      rating: '',
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleToggle = this.handleToggle.bind(this)
@@ -31,11 +31,11 @@ class ReviewForm extends Component {
     return (
       <div>
         <h1>
-          {user.email} you are leaving a review for {product.name}
+          {user.email} You are leaving a review for {product.name}
         </h1>
         <form onSubmit={this.handleSubmit}>
           <label>
-            review here
+            Review below:
             <input
               type="text"
               value={this.state.text}
@@ -46,7 +46,8 @@ class ReviewForm extends Component {
           </label>
           <label>
             Rating
-            <select name="rating" value={this.state.rating} onChange={this.handleToggle}>
+            <select className="browser-default" name="rating" value={this.state.rating} onChange={this.handleToggle}>
+              <option value='' disabled selected>Choose rating</option>
               <option>1</option>
               <option>2</option>
               <option>3</option>
@@ -72,13 +73,14 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleSubmit: function(event) {
+    handleSubmit: function (event) {
       event.preventDefault()
       const review = {
         ...this.state,
         userId: +this.props.user.id,
         productId: +this.props.match.params.productId,
       }
+      console.log('review', review)
       dispatch(createReview(review))
       this.setState({
         text: '',

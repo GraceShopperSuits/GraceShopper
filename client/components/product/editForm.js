@@ -108,7 +108,7 @@ class EditForm extends Component {
 
           <label>
             Season
-            <select name="season" value={this.state.season} onChange={this.handleToggle}>
+            <select className="browser-default" name="season" value={this.state.season} onChange={this.handleToggle}>
               <option>Please select</option>
               <option>Fall</option>
               <option>Summer</option>
@@ -116,9 +116,10 @@ class EditForm extends Component {
               <option>Spring</option>
             </select>
           </label>
+
           <label>
             Color
-            <select name="color" value={this.state.color} onChange={this.handleToggle}>
+            <select className="browser-default" name="color" value={this.state.color} onChange={this.handleToggle}>
               <option>Please select</option>
               <option>Black</option>
               <option>Navy</option>
@@ -130,7 +131,7 @@ class EditForm extends Component {
           </label>
           <label>
             Size
-            <select name="size" value={this.state.size} onChange={this.handleToggle}>
+            <select className="browser-default" name="size" value={this.state.size} onChange={this.handleToggle}>
               <option>Please select</option>
               <option>36</option>
               <option>38</option>

@@ -75,7 +75,7 @@ class SingleProduct extends Component {
                   <i className="material-icons center">add_shopping_cart</i>
                 </button>
 
-                {user.admin ? <Link to={`/products/${singleProduct.id}/edit`}>Edit</Link> : null}
+                {user.admin ? <Link className="waves-effect waves-light btn" to={`/products/${singleProduct.id}/edit`}>Edit</Link> : null}
 
                 {reviews.length ? (
                   <div className="row">
@@ -96,8 +96,8 @@ class SingleProduct extends Component {
                     })}
                   </div>
                 ) : (
-                  <div>There are no reviews yet! leave the first one?</div>
-                )}
+                    <div>There are no reviews yet! leave the first one?</div>
+                  )}
                 <Link to={`/products/${singleProduct.id}/review`}>
                   <button type="button" className="btn">
                     Add Review!
