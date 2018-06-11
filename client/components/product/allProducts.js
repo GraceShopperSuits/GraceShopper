@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { addItemThunk } from '../../store'
+import { addItemThunk, removeItemThunk } from '../../store'
+
+import Materialize from '../../../materialize/materialize.min'
 
 class AllProducts extends Component {
   constructor(props) {
@@ -23,15 +25,16 @@ class AllProducts extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
+
   toggleCheckboxChange(event) {
     this.setState({ [event.target.name]: !this.state[event.target.name] })
   }
 
-  handleChange = function (event) {
+  handleChange = function(event) {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  handleSubmit = function (event) {
+  handleSubmit = function(event) {
     event.preventDefault()
     this.setState({
       search: event.target.search.value,
@@ -44,8 +47,8 @@ class AllProducts extends Component {
     const user = this.props.user || {}
     products = this.state.search
       ? products.filter(product =>
-        product.name.toLowerCase().includes(this.state.search.toLowerCase())
-      )
+          product.name.toLowerCase().includes(this.state.search.toLowerCase())
+        )
       : products
     let filteredSeasons = []
     filteredSeasons.push(
@@ -88,6 +91,10 @@ class AllProducts extends Component {
     products = filteredColors
     // season=Winter&season=Summer&color=Black
     // seperating products by type
+
+    // let toast =
+    //   '<span>Added to cart!</span><button class="btn-flat toast-action" onClick={this.props.removeItem(product.id)}>Undo</button>'
+
     return (
       <div className="Landing">
         {user.admin ? (
@@ -197,30 +204,36 @@ class AllProducts extends Component {
             <div className="row">
               {products.length
                 ? products.map(product => {
-                  return (
-                    <div className="col s3" key={product.id}>
-                      <div className="card">
-                        <div className="card-image">
-                          <img className="responsive-img" src={product.imageUrl} />
-                          <a
-                            className="btn-floating halfway-fab waves-effect waves-light black"
-                            onClick={() => this.props.addItem(product.id)}
-                          >
-                            <i className="material-icons">add_shopping_cart</i>
-                          </a>
-                        </div>
-                        <div className="card-content">
-                          <Link to={`/products/${product.id}`} key={product.id}>
-                            <span className="card-title">{product.name}</span>
-                            <p>{`$${product.price}`}</p>
-                            <p>{product.color}</p>
-                            <p>{`${product.season} Collection`}</p>
-                          </Link>
+                    return (
+                      <div className="col s3 card-parent" key={product.id}>
+                        <div className="card">
+                          <div className="card-image">
+                            <img className="responsive-img" src={product.imageUrl} />
+                            <a
+                              className="btn-floating halfway-fab waves-effect waves-light black"
+                              onClick={() => {
+                                this.props.addItem(product.id)
+                                // toast here
+                                Materialize.toast({
+                                  html: '<span>Added to cart!</span>',
+                                })
+                              }}
+                            >
+                              <i className="material-icons">add_shopping_cart</i>
+                            </a>
+                          </div>
+                          <div className="card-content">
+                            <Link to={`/products/${product.id}`} key={product.id}>
+                              <span className="card-title">{product.name}</span>
+                              <p>{`$${product.price}`}</p>
+                              <p>{product.color}</p>
+                              <p>{`${product.season} Collection`}</p>
+                            </Link>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  )
-                })
+                    )
+                  })
                 : null}
             </div>
           </div>
@@ -241,6 +254,9 @@ const mapDispatch = dispatch => {
   return {
     addItem: itemId => {
       dispatch(addItemThunk(itemId))
+    },
+    removeItem: itemId => {
+      dispatch(removeItemThunk(itemId))
     },
   }
 }
