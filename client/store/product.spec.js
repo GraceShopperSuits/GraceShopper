@@ -8,7 +8,7 @@ describe('action creators', () => {
         it('returns expected action description', () => {
             const testProduct = {
                 id: 1,
-                name: "noah",
+                name: "testingSuitz",
                 season: "Winter",
                 size: "44",
                 color: "Pink",
@@ -25,7 +25,7 @@ describe('action creators', () => {
         it('returns expected action description', () => {
             const testProduct = {
                 id: 1,
-                name: "noah",
+                name: "testingSuitz",
                 season: "Winter",
                 size: "44",
                 color: "Pink",
@@ -42,7 +42,7 @@ describe('action creators', () => {
         it('returns expected action description', () => {
             const testProduct = {
                 id: 1,
-                name: "noah",
+                name: "testingSuitz",
                 season: "Winter",
                 size: "44",
                 color: "Pink",
@@ -65,7 +65,140 @@ describe('reducer', () => {
     });
 
     it('has correct initial state', () => {
-        expect(testStore, )
+        expect(testStore.getState()).to.be.deep.equal([])
+    })
+
+    it('get products from action', () => {
+        testStore.dispatch({
+            type: 'GET_PRODUCTS',
+            products: [{
+                id: 1,
+                name: "testingSuitz",
+                season: "Winter",
+                size: "44",
+                color: "Pink",
+                quantity: 4,
+                price: 159,
+            }]
+        })
+        expect(testStore.getState()).to.be.deep.equal([{
+            id: 1,
+            name: "testingSuitz",
+            season: "Winter",
+            size: "44",
+            color: "Pink",
+            quantity: 4,
+            price: 159,
+        }])
+    })
+
+    it('add product from action', () => {
+        testStore.dispatch({
+            type: 'GET_PRODUCTS',
+            products: [{
+                id: 1,
+                name: "testingSuitz(1)",
+                season: "Winter",
+                size: "44",
+                color: "Pink",
+                quantity: 4,
+                price: 159,
+            }]
+        })
+        testStore.dispatch({
+            type: 'ADD_PRODUCT',
+            product: {
+                id: 2,
+                name: "testingSuitz(2)",
+                season: "Summer",
+                size: "34",
+                color: "Golden",
+                quantity: 10,
+                price: 259,
+            }
+        })
+        expect(testStore.getState()).to.be.deep.equal(
+            [
+                {
+                    id: 1,
+                    name: "testingSuitz(1)",
+                    season: "Winter",
+                    size: "44",
+                    color: "Pink",
+                    quantity: 4,
+                    price: 159,
+                },
+                {
+                    id: 2,
+                    name: "testingSuitz(2)",
+                    season: "Summer",
+                    size: "34",
+                    color: "Golden",
+                    quantity: 10,
+                    price: 259,
+                }
+            ]
+        )
+    })
+
+    it('add product from action', () => {
+        testStore.dispatch({
+            type: 'GET_PRODUCTS',
+            products: [{
+                id: 1,
+                name: "testingSuitz(1)",
+                season: "Winter",
+                size: "44",
+                color: "Pink",
+                quantity: 4,
+                price: 159,
+            }]
+        })
+        testStore.dispatch({
+            type: 'ADD_PRODUCT',
+            product: {
+                id: 2,
+                name: "testingSuitz(2)",
+                season: "Summer",
+                size: "34",
+                color: "Golden",
+                quantity: 10,
+                price: 259,
+            }
+        })
+        testStore.dispatch({
+            type: 'EDIT_PRODUCT',
+            product: {
+                id: 2,
+                name: "testingSuitz(3)",
+                season: "Autumn",
+                size: "24",
+                color: "Black",
+                quantity: 5,
+                price: 359,
+            }
+        })
+        expect(testStore.getState()).to.be.deep.equal(
+            [
+                {
+                    id: 1,
+                    name: "testingSuitz(1)",
+                    season: "Winter",
+                    size: "44",
+                    color: "Pink",
+                    quantity: 4,
+                    price: 159,
+                },
+                {
+                    id: 2,
+                    name: "testingSuitz(3)",
+                    season: "Autumn",
+                    size: "24",
+                    color: "Black",
+                    quantity: 5,
+                    price: 359,
+                }
+            ]
+        )
     })
 })
-

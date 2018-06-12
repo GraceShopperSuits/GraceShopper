@@ -4,14 +4,14 @@ const GET_PRODUCTS = 'GET_PRODUCTS'
 const ADD_PRODUCT = 'ADD_PRODUCT'
 const EDIT_PRODUCT = 'EDIT_PRODUCT'
 
-const getProducts = products => ({
+export const getProducts = products => ({
   type: GET_PRODUCTS,
   products,
 })
-const addProduct = product => ({ type: ADD_PRODUCT, product })
-const editProduct = product => ({ type: EDIT_PRODUCT, product })
+export const addProduct = product => ({ type: ADD_PRODUCT, product })
+export const editProduct = product => ({ type: EDIT_PRODUCT, product })
 
-const reducer = (state = [], action) => {
+export const reducer = (state = [], action) => {
   switch (action.type) {
     case GET_PRODUCTS: {
       return action.products
