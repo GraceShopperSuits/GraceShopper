@@ -97,7 +97,7 @@ class Cart extends Component {
                 })
               }}
             >
-              Check snout
+              Check out
             </Button>
           )}
         </div>

@@ -17,20 +17,35 @@ router.post('/', async (req, res, next) => {
     })
     //get keys(product ids) from cart object
     const cartArr = Object.keys(req.body)
-
-    //map the array to convert keys to an instance of that product
-    const cartItems = await Promise.all(
-      cartArr.map(eachProduct => {
-        const product = Product.findById(Number(eachProduct))
-        return product
+    cartArr.forEach(async product => {
+      const { price } = await Product.findById(Number(product))
+      await order[0].addProduct(Number(product), {
+        through: { quantity: req.body[product], priceAtSale: price },
       })
-    )
+    })
+    // let products = []
+    // for (let key in req.body) {
+    //   if (req.body.hasOwnProperty(key)) {
+    //     let quantity = req.body[key]
+    //     let product = await Product.findById(Number(key))
+    //     for (let i = 0; i < quantity; i++) {
+    //       products.push(product)
+    //     }
+    //   }
+    // }
+
+    // // map the array to convert keys to an instance of that product
+    // const cartItems = await Promise.all(
+    //   cartArr.map(eachProduct => {
+    //     const product = Product.findById(Number(eachProduct))
+    //     return product
+    //   })
+    // )
 
     //add products to associated order
-    await order[0].addProducts(cartItems)
+    // await order[0].addProduct(cartItems[0], { through: { quantity: 1, priceAtSale: 111 } })
     res.status(201).send('Order created')
-  }
-  catch (error) {
+  } catch (error) {
     next(error)
   }
 })
