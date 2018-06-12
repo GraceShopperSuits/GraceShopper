@@ -209,7 +209,7 @@ class AllProducts extends Component {
                       <div className="card">
                         <div className="card-image">
                           <Link to={`/products/${product.id}`}>
-                            <img className="responsive-img" src={product.imageUrl} />
+                            <img className="responsive-img image-for-card" src={product.imageUrl} />
                           </Link>
                           <a
                             className="btn-floating halfway-fab waves-effect waves-light black"
