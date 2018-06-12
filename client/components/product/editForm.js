@@ -156,14 +156,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       const product = {
         ...this.state,
       }
-      const id = this.props.match.params.productId
-      dispatch(updateProduct(product, id))
+      dispatch(updateProduct(product, ownProps))
 
       this.setState({
         name: '',
         description: '',
         season: '',
-        cost: '',
+        price: '',
         color: '',
         imageUrl: '',
         size: '',

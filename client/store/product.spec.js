@@ -1,8 +1,7 @@
 import { expect } from 'chai'
 import { getProducts, addProduct, editProduct } from '../store/product'
-import reducer from '../store/product'
-import { createStore, combineReducers, applyMiddleware } from 'redux'
-import store from '../store'
+import Reducer from '../store/product'
+import { createStore } from 'redux'
 
 describe('action creators', () => {
     describe('getProducts', () => {
@@ -58,17 +57,15 @@ describe('action creators', () => {
     })
 })
 
-describe('store/reducer', () => {
+describe('reducer', () => {
 
-    let testingStore;
+    let testStore;
     beforeEach('Create testing store from reducer', () => {
-        testingStore = createStore(reducer);
+        testStore = createStore(Reducer);
     });
 
-    beforeEach('initialize the store to be loading products', () => {
-        testingStore.replaceReducer(() => ({
-            ...testingStore.getState(),
-        }))
+    it('has correct initial state', () => {
+        expect(testStore, )
     })
 })
 

@@ -4,13 +4,12 @@ const GET_PRODUCTS = 'GET_PRODUCTS'
 const ADD_PRODUCT = 'ADD_PRODUCT'
 const EDIT_PRODUCT = 'EDIT_PRODUCT'
 
-export const getProducts = products => ({
+const getProducts = products => ({
   type: GET_PRODUCTS,
   products,
 })
-export const addProduct = product => ({ type: ADD_PRODUCT, product })
-export const editProduct = product => ({ type: EDIT_PRODUCT, product })
-
+const addProduct = product => ({ type: ADD_PRODUCT, product })
+const editProduct = product => ({ type: EDIT_PRODUCT, product })
 
 const reducer = (state = [], action) => {
   switch (action.type) {
@@ -26,7 +25,7 @@ const reducer = (state = [], action) => {
           return action.product
         }
         return elem
-      })//if productId macthes replace with new product ,else return product(old one)
+      }) //if productId macthes replace with new product ,else return product(old one)
     }
     default: {
       return state
@@ -52,9 +51,11 @@ export const createProduct = product => dispatch => {
     .catch(error => console.error('could not create', error))
 }
 
-export const updateProduct = (product, id) => dispatch => {
+export const updateProduct = (product, ownProps) => dispatch => {
+  console.log('ownProps', ownProps)
   axios
-    .put(`/api/products/${id}`)
+    .put(`/api/products/${+ownProps.match.params.productId}`, product)
     .then(res => dispatch(editProduct(res.data)))
-    .catch(error => console.error("could not update", error))
+    .catch(error => console.error('could not update', error))
+  ownProps.history.push(`/products/${ownProps.match.params.productId}`)
 }
