@@ -2,7 +2,7 @@ import React from 'react'
 import StripeCheckout from 'react-stripe-checkout'
 import axios from 'axios'
 import { connect } from 'react-redux'
-
+import { clearCartItems } from '../store'
 import STRIPE_PUBLISHABLE from '../constants/stripe'
 import PAYMENT_SERVER_URL from '../constants/server'
 
@@ -17,6 +17,7 @@ class Stripe extends React.Component {
   successPayment = data => {
     alert('Payment Successful')
     this.props.history.push('/')
+    this.props.clearCart()
   }
 
   errorPayment = data => {
@@ -49,7 +50,15 @@ class Stripe extends React.Component {
   }
 }
 
+const mapDispatch = dispatch => {
+  return {
+    clearCart: () => {
+      dispatch(clearCartItems())
+    },
+  }
+}
+
 export default connect(
   null,
-  null
+  mapDispatch
 )(Stripe)
