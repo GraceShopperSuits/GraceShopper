@@ -14,7 +14,6 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  console.log(req.body, '$^$^$strip charge')
   stripe.charges.create(req.body, postStripeCharge(res))
 })
 
