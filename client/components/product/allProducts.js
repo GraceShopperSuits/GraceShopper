@@ -208,7 +208,7 @@ class AllProducts extends Component {
                     <div className="col s3 card-parent" key={product.id}>
                       <div className="card">
                         <div className="card-image">
-                          <img className="responsive-img" src={product.imageUrl} />
+                          <img className="responsive-img image-for-card" src={product.imageUrl} />
                           <a
                             className="btn-floating halfway-fab waves-effect waves-light black"
                             onClick={() => {

@@ -36,15 +36,16 @@ form div {
   padding: none;
 }
 
-.card-image {
-  height: auto !important;
+.image-for-card {
+  height: 500px !important;
+  width: auto !important;
 }
 
 p {
   word-wrap: break-word;
 }
 
-select{
+select {
   width: 150px;
   text-overflow: ellipsis;
 }
