@@ -44,8 +44,15 @@ class ReviewForm extends Component {
           </label>
           <label>
             Rating
-            <select className="browser-default" name="rating" value={this.state.rating} onChange={this.handleToggle}>
-              <option value='' disabled selected>Choose rating</option>
+            <select
+              className="browser-default"
+              name="rating"
+              value={this.state.rating}
+              onChange={this.handleToggle}
+            >
+              <option value="" disabled selected>
+                Choose rating
+              </option>
               <option>1</option>
               <option>2</option>
               <option>3</option>
@@ -71,8 +78,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleSubmit: function (event) {
+    handleSubmit: function(event) {
       event.preventDefault()
+      this.props.history.push(`/products/${this.props.match.params.productId}`)
       const review = {
         ...this.state,
         userId: +this.props.user.id,
