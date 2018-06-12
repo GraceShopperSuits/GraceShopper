@@ -32,7 +32,6 @@ router.post('/', async (req, res, next) => {
 
 router.put('/', async (req, res, next) => {
   try {
-    console.log('hiii try put', req.user)
     const userId = req.user.id
     //get user id from req.user object
 
