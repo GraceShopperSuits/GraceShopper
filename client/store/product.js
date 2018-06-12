@@ -11,7 +11,6 @@ const getProducts = products => ({
 const addProduct = product => ({ type: ADD_PRODUCT, product })
 const editProduct = product => ({ type: EDIT_PRODUCT, product })
 
-
 const reducer = (state = [], action) => {
   switch (action.type) {
     case GET_PRODUCTS: {
@@ -26,7 +25,7 @@ const reducer = (state = [], action) => {
           return action.product
         }
         return elem
-      })//if productId macthes replace with new product ,else return product(old one)
+      }) //if productId macthes replace with new product ,else return product(old one)
     }
     default: {
       return state
@@ -54,7 +53,7 @@ export const createProduct = product => dispatch => {
 
 export const updateProduct = (product, id) => dispatch => {
   axios
-    .put(`/api/products/${id}`)
+    .put(`/api/products/${id}`, product)
     .then(res => dispatch(editProduct(res.data)))
-    .catch(error => console.error("could not update", error))
+    .catch(error => console.error('could not update', error))
 }
