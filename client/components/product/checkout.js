@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addItemThunk, removeItemThunk, clearCartItems, createOrder } from '../../store'
+import { addItemThunk, removeItemThunk, clearCartItems, createOrder, soldOrder } from '../../store'
 import { Table, Button } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import { Stripe } from '../index'
