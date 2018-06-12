@@ -103,9 +103,14 @@ class EditForm extends Component {
 
           <label>
             Season
-            <select className="browser-default" name="season" value={this.state.season} onChange={this.handleToggle}>
+            <select
+              className="browser-default"
+              name="season"
+              value={this.state.season}
+              onChange={this.handleToggle}
+            >
               <option>Please select</option>
-              <option>Fall</option>
+              <option>Autumn</option>
               <option>Summer</option>
               <option>Winter</option>
               <option>Spring</option>
@@ -114,7 +119,12 @@ class EditForm extends Component {
 
           <label>
             Color
-            <select className="browser-default" name="color" value={this.state.color} onChange={this.handleToggle}>
+            <select
+              className="browser-default"
+              name="color"
+              value={this.state.color}
+              onChange={this.handleToggle}
+            >
               <option>Please select</option>
               <option>Black</option>
               <option>Navy</option>
@@ -126,7 +136,12 @@ class EditForm extends Component {
           </label>
           <label>
             Size
-            <select className="browser-default" name="size" value={this.state.size} onChange={this.handleToggle}>
+            <select
+              className="browser-default"
+              name="size"
+              value={this.state.size}
+              onChange={this.handleToggle}
+            >
               <option>Please select</option>
               <option>36</option>
               <option>38</option>
@@ -143,9 +158,9 @@ class EditForm extends Component {
   }
 }
 
-export const mapStateToProps = function (state) {
+export const mapStateToProps = function(state) {
   return {
-    products: state.product
+    products: state.product,
   }
 }
 
@@ -158,7 +173,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       }
       const id = this.props.match.params.productId
       dispatch(updateProduct(product, id))
-
       this.setState({
         name: '',
         description: '',
