@@ -43,6 +43,14 @@ router.put('/', async (req, res, next) => {
       },
     })
     const updatedOrder = await order[0].update({ status: 'sold' })
+    // initialize array of line items, with each product decrement with line item's quantity
+    const items = await updatedOrder.getProducts()
+    items.forEach(item => {
+      let prev = item.quantity
+      let line = item.lineItem.quantity
+      item.update({ quantity: prev - line })
+    })
+
     res.send(updatedOrder)
   } catch (err) {
     next(err)
