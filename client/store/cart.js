@@ -63,6 +63,15 @@ export const createOrder = orderInformation => dispatch => {
     })
 }
 
+export const soldOrder = () => dispatch => {
+  return axios
+    .put(`/api/cart/`)
+    .then(res => console.log(res.data))
+    .catch(error => {
+      console.error(error)
+    })
+}
+
 export const addItemThunk = itemId => dispatch => {
   return axios
     .get(`/api/products/${itemId}`)

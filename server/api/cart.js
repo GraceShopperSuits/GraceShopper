@@ -23,29 +23,29 @@ router.post('/', async (req, res, next) => {
         through: { quantity: req.body[product], priceAtSale: price },
       })
     })
-    // let products = []
-    // for (let key in req.body) {
-    //   if (req.body.hasOwnProperty(key)) {
-    //     let quantity = req.body[key]
-    //     let product = await Product.findById(Number(key))
-    //     for (let i = 0; i < quantity; i++) {
-    //       products.push(product)
-    //     }
-    //   }
-    // }
 
-    // // map the array to convert keys to an instance of that product
-    // const cartItems = await Promise.all(
-    //   cartArr.map(eachProduct => {
-    //     const product = Product.findById(Number(eachProduct))
-    //     return product
-    //   })
-    // )
-
-    //add products to associated order
-    // await order[0].addProduct(cartItems[0], { through: { quantity: 1, priceAtSale: 111 } })
     res.status(201).send('Order created')
   } catch (error) {
     next(error)
+  }
+})
+
+router.put('/', async (req, res, next) => {
+  try {
+    console.log('hiii try put', req.user)
+    const userId = req.user.id
+    //get user id from req.user object
+
+    //find an open order that is pending or create a new one
+    const order = await Order.findOrCreate({
+      where: {
+        userId,
+        status: 'pending',
+      },
+    })
+    const updatedOrder = await order[0].update({ status: 'sold' })
+    res.send(updatedOrder)
+  } catch (err) {
+    next(err)
   }
 })
