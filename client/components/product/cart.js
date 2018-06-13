@@ -22,16 +22,25 @@ class Cart extends Component {
     //display modal telling user to sign in.
   }
   render() {
+    console.log('props', this.props)
     const cart = this.props.cart
     const products = this.props.products
     const cartArr = []
     for (let key in cart) {
       if (cart.hasOwnProperty(key)) {
+        console.log('key', key)
         const currProduct = products.filter(product => {
           return product.id === Number(key)
         })
+        console.log('currProd in if', currProduct)
+        console.log('cart', cart)
+        console.log('cart[key]', Number(cart[key]))
+        console.log('cur....', currProduct[0])
         currProduct[0].saleQuantity = Number(cart[key])
+
+        console.log('curr', currProduct)
         cartArr.push(currProduct[0])
+        console.log('cartArr', cartArr)
       }
     }
     let total = 0
@@ -61,6 +70,7 @@ class Cart extends Component {
                       <td>
                         <Button
                           onClick={() => {
+                            console.log('----add-', this.props)
                             this.props.addItem(item.id)
                             total += item.price
                           }}
@@ -90,16 +100,16 @@ class Cart extends Component {
               <Button onClick={this.handleCheckout}>Check out</Button>{' '}
             </Link>
           ) : (
-            <Button
-              onClick={() => {
-                Materialize.toast({
-                  html: '<span>Please Sign/Log in!</span>',
-                })
-              }}
-            >
-              Check out
+              <Button
+                onClick={() => {
+                  Materialize.toast({
+                    html: '<span>Please Sign/Log in!</span>',
+                  })
+                }}
+              >
+                Check out
             </Button>
-          )}
+            )}
         </div>
       </div>
     )
