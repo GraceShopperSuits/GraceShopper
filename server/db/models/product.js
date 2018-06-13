@@ -25,7 +25,6 @@ const Product = db.define('product', {
   },
   size: {
     type: Sequelize.ENUM('36', '38', '40', '42', '44', '46'),
-    allowNull: false,
   },
   color: {
     type: Sequelize.ENUM('Black', 'Navy', 'Brown', 'Maroon', 'Pink', 'White'),
@@ -37,7 +36,7 @@ const Product = db.define('product', {
   },
   price: {
     type: Sequelize.INTEGER,
-    allowNull: false,
+    defaultValue: 1
   },
 })
 
